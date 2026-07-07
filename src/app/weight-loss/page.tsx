@@ -36,7 +36,7 @@ const medications = [
     description:
       "Daily oral option for those who prefer not to inject. Emerging data on efficacy vs. injectable.",
     tag: "Oral Option",
-    tagColor: "var(--bone-dim)",
+    tagColor: "#5A5A5A",
   },
   {
     name: "Sublingual Formulations",
@@ -44,7 +44,7 @@ const medications = [
     description:
       "Sublingual sema/tirz where injectable stock is limited. Provider-reviewed and patient-specific.",
     tag: "Alternative",
-    tagColor: "var(--bone-dim)",
+    tagColor: "#5A5A5A",
   },
   {
     name: "Metformin",
@@ -52,7 +52,7 @@ const medications = [
     description:
       "Insulin sensitizer often used adjunct to GLP-1 therapy. May support metabolic health beyond weight.",
     tag: "Adjunct",
-    tagColor: "var(--muted)",
+    tagColor: "#5A5A5A",
   },
 ];
 
@@ -115,7 +115,7 @@ export default function WeightLossPage() {
                 different operating system now. We fix the hardware, not the
                 habits.
               </p>
-              <Callout variant="info" className="mb-8">
+              <Callout variant="info" className="mb-8" light>
                 <strong>Trauma-informed approach.</strong> No shame. No before/after
                 framing. No willpower lectures. Your cortisol, insulin resistance,
                 and hormonal changes from years of operational stress are real
@@ -170,7 +170,7 @@ export default function WeightLossPage() {
                   );
                 })}
               </ul>
-              <div className="mt-6 pt-6 border-t text-xs" style={{ borderColor: "#B8AFA4", color: "#7A7A7A" }}>
+              <div className="mt-6 pt-6 border-t text-xs" style={{ borderColor: "#B8AFA4", color: "#5A5A5A" }}>
                 Compounded GLP-1 medications are 503A patient-specific and not
                 FDA-approved. Brand-name options available where covered.
                 Provider evaluation required.
@@ -267,7 +267,7 @@ export default function WeightLossPage() {
                     {med.tag}
                   </span>
                 </div>
-                <div className="text-xs" style={{ fontFamily: "var(--font-mono)", color: "#7A7A7A" }}>
+                <div className="text-xs" style={{ fontFamily: "var(--font-mono)", color: "#5A5A5A" }}>
                   {med.brands}
                 </div>
                 <p className="text-sm leading-relaxed" style={{ color: "#5A5A5A" }}>
@@ -277,7 +277,7 @@ export default function WeightLossPage() {
             ))}
           </div>
 
-          <Callout variant="risk" className="mt-8">
+          <Callout variant="risk" className="mt-8" light>
             Compounded GLP-1 medications (semaglutide, tirzepatide) are produced
             by 503A-compliant pharmacies and are patient-specific. They are{" "}
             <strong>not FDA-approved</strong>. Brand-name options (Wegovy, Zepbound,
@@ -326,7 +326,7 @@ export default function WeightLossPage() {
           >
             Start Your Bloodwork <ArrowRight size={16} />
           </Link>
-          <p className="mt-3 text-sm" style={{ color: "#7A7A7A" }}>
+          <p className="mt-3 text-sm" style={{ color: "#5A5A5A" }}>
             GLP-1 Readiness Panel — $99 · Ships in 1–2 business days
           </p>
         </div>

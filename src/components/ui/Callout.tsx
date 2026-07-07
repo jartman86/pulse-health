@@ -37,12 +37,14 @@ interface CalloutProps {
   variant?: CalloutVariant;
   children: React.ReactNode;
   className?: string;
+  light?: boolean;
 }
 
 export default function Callout({
   variant = "info",
   children,
   className,
+  light = false,
 }: CalloutProps) {
   const v = variants[variant];
   const Icon = v.icon;
@@ -60,7 +62,7 @@ export default function Callout({
         className="shrink-0 mt-0.5"
         style={{ color: v.iconColor }}
       />
-      <div style={{ color: "var(--bone-dim)" }}>{children}</div>
+      <div style={{ color: light ? "#3A3A3A" : "var(--bone-dim)" }}>{children}</div>
     </div>
   );
 }
