@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import PulseLogo from "@/components/ui/PulseLogo";
 
 const navLinks = [
   { href: "/weight-loss", label: "Weight Loss" },
@@ -57,22 +57,16 @@ export default function Nav() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group focus-visible:outline-none"
+          className="flex items-center group focus-visible:outline-none"
           aria-label="Pulse Health — home"
         >
-          <PulseLogo
-            className="w-8 h-8"
-            light={isLightDoor}
+          <Image
+            src={isLightDoor ? "/logo/logo-white-new.png" : "/logo/logo-bone-text-darkbg.png"}
+            alt="Pulse Health"
+            width={638}
+            height={668}
+            className="h-10 w-auto"
           />
-          <span
-            className="font-display font-700 text-lg tracking-tight"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: isLightDoor ? "var(--ink)" : "var(--bone)",
-            }}
-          >
-            PULSE
-          </span>
         </Link>
 
         {/* Desktop links */}

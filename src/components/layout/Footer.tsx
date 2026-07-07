@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PulseLogo from "@/components/ui/PulseLogo";
+import Image from "next/image";
 import PulseLine from "@/components/ui/PulseLine";
 
 const footerLinks = {
@@ -36,14 +36,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <PulseLogo className="w-8 h-8" />
-              <span
-                className="font-semibold text-lg tracking-tight"
-                style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-              >
-                PULSE HEALTH
-              </span>
+            <Link href="/" className="flex items-center mb-4">
+              <Image
+                src="/logo/logo-bone-text-darkbg.png"
+                alt="Pulse Health"
+                width={638}
+                height={668}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               Performance medicine built for operators, by operators. Veterans,
