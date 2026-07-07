@@ -9,7 +9,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 const outcomes = [
   { stat: "12–25%", label: "Avg. body weight reduction", sub: "GLP-1 program, 12 months" },
   { stat: "6–8 wks", label: "First protocol results visible", sub: "Labs + provider check-in" },
-  { stat: "1 in 3", label: "Operators report improved sleep week 4", sub: "Peptide + coaching cohort" },
+  { stat: "1 in 3", label: "Operators report improved sleep week 4", sub: "Peptide protocol cohort" },
 ];
 
 const fieldNotesTeasers = [
@@ -38,7 +38,7 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section
-        className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative min-h-screen flex flex-col justify-center pt-40 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{ background: "var(--ink)" }}
       >
         {/* Hero background image */}
@@ -143,7 +143,7 @@ export default function HomePage() {
                   I want to lose weight
                 </h2>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  GLP-1, metabolic coaching, and labs. No shame, no hype — just
+                  GLP-1, provider monitoring, and labs. No shame, no hype — just
                   a protocol that works.
                 </p>
                 <div
@@ -176,8 +176,8 @@ export default function HomePage() {
                   I want to optimize
                 </h2>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  Peptides, NAD+, sexual health, labs, and coaching. The full
-                  performance-medicine stack.
+                  Peptides, NAD+, sexual health, labs, and provider oversight.
+                  The full performance-medicine stack.
                 </p>
                 <div
                   className="flex items-center gap-1 text-sm font-medium mt-auto pt-2"
@@ -227,14 +227,14 @@ export default function HomePage() {
               >
                 Labs first. Protocol second.
                 <br />
-                <span style={{ color: "var(--red)" }}>Coaching as the destination.</span>
+                <span style={{ color: "var(--red)" }}>Monitoring as the destination.</span>
               </h2>
               <p className="text-base leading-relaxed mb-4" style={{ color: "var(--bone-dim)" }}>
                 Most telehealth clinics hand you a prescription and a portal.
                 Pulse starts with a complete metabolic baseline, uses the data
-                to build your protocol, and then wraps the whole thing in a
-                coaching relationship — because sustained performance requires
-                more than a monthly script.
+                to build your protocol, and then keeps tracking your response
+                — because sustained performance requires more than a monthly
+                script.
               </p>
               <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                 This is the model built by the Extreme Resilience team — operators

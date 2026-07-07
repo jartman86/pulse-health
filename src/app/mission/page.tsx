@@ -40,7 +40,7 @@ export default function MissionPage() {
     <>
       {/* Section 1 — Problem (Pattern Interrupt) */}
       <section
-        className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="pt-44 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
         style={{ background: "var(--ink)" }}
       >
         <div

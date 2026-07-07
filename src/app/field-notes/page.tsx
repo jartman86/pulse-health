@@ -70,7 +70,7 @@ const articles = [
 export default function FieldNotesPage() {
   return (
     <>
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+      <section className="pt-44 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <Eyebrow>Field Notes</Eyebrow>
           <h1

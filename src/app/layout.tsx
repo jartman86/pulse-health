@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Pulse Health",
   },
   description:
-    "Telehealth performance medicine built for veterans, first responders, and high-performing founders. GLP-1, peptides, labs, and integrated coaching.",
+    "Telehealth performance medicine built for veterans, first responders, and high-performing founders. GLP-1, peptides, labs, and physician-supervised protocols.",
   keywords: [
     "performance medicine",
     "telehealth",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Pulse Health",
     title: "Pulse Health — Performance Medicine for Operators",
     description:
-      "Built by operators, for operators. Premium telehealth: GLP-1, peptides, labs, and coaching.",
+      "Built by operators, for operators. Premium telehealth: GLP-1, peptides, labs, and provider oversight.",
   },
 };
 

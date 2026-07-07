@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "How It Works — The 5-Step Journey",
   description:
-    "Labs → Results → Consult → Protocol → Coaching. See exactly how Pulse Health works from first bloodwork to full coaching integration.",
+    "Labs → Results → Consult → Protocol → Monitoring. See exactly how Pulse Health works from first bloodwork to ongoing follow-up.",
 };
 
 const steps = [
@@ -45,9 +45,9 @@ const steps = [
   },
   {
     n: "05",
-    phase: "Coaching",
-    title: "Coaching + re-test — the destination",
-    body: "Every Pulse protocol integrates with the Extreme Resilience coaching track — functional health, mental resilience, and purpose. Quarterly re-test closes the loop.",
+    phase: "Monitoring",
+    title: "Quarterly re-test — closing the loop",
+    body: "Your provider tracks your response over time and adjusts your protocol as your labs change. Quarterly re-testing keeps the plan calibrated to your biology, not a guess.",
     cta: { label: "Our mission", href: "/mission" },
     mydose: false,
   },
@@ -56,7 +56,7 @@ const steps = [
 export default function HowItWorksPage() {
   return (
     <>
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+      <section className="pt-44 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <Eyebrow>The Process</Eyebrow>
           <h1
@@ -65,11 +65,11 @@ export default function HowItWorksPage() {
           >
             Labs → Results → Consult
             <br />
-            <span style={{ color: "var(--red)" }}>→ Protocol → Coaching</span>
+            <span style={{ color: "var(--red)" }}>→ Protocol → Monitoring</span>
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "var(--bone-dim)" }}>
-            Five steps from bloodwork to a running protocol with coaching
-            integration. Clear, no hidden steps, no quiz gates.
+            Five steps from bloodwork to a running protocol with ongoing
+            monitoring. Clear, no hidden steps, no quiz gates.
           </p>
         </div>
       </section>

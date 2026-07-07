@@ -19,7 +19,7 @@ export default async function FieldNotesArticlePage({
   return (
     <>
       <section
-        className="pt-28 pb-10 px-4 sm:px-6 lg:px-8"
+        className="pt-44 pb-10 px-4 sm:px-6 lg:px-8"
         style={{ background: "var(--ink)" }}
       >
         <div className="max-w-3xl mx-auto">

@@ -21,7 +21,7 @@ const doorLabels = {
 export default function ProtocolsPage() {
   return (
     <>
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+      <section className="pt-44 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <Eyebrow>Protocols</Eyebrow>
           <h1
@@ -32,7 +32,7 @@ export default function ProtocolsPage() {
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "var(--bone-dim)" }}>
             Every protocol is a complete bundle — labs, prescription, provider oversight,
-            and coaching integration. You buy a result, not a line item.
+            and follow-up monitoring. You buy a result, not a line item.
           </p>
         </div>
       </section>

@@ -8,9 +8,9 @@ import Callout from "@/components/ui/Callout";
 import { ArrowRight, Check, Clock, Package, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Medical Weight Loss — GLP-1, Metabolic Coaching & Labs",
+  title: "Medical Weight Loss — GLP-1, Provider Monitoring & Labs",
   description:
-    "Supervised GLP-1 weight loss with labs and metabolic coaching. Wegovy, Ozempic, Zepbound, oral options. Operator-grade, no shame.",
+    "Supervised GLP-1 weight loss with labs and ongoing provider monitoring. Wegovy, Ozempic, Zepbound, oral options. Operator-grade, no shame.",
 };
 
 const medications = [
@@ -61,7 +61,7 @@ const whatIsIncluded = [
   { icon: UserCheck, text: "Licensed provider consult" },
   { icon: Package, text: "Prescription delivered to your door" },
   { icon: Clock, text: "Monthly check-ins, dose adjustments" },
-  { icon: UserCheck, text: "Metabolic coaching integration" },
+  { icon: UserCheck, text: "Ongoing dose monitoring" },
   { icon: Package, text: "Side-effect support (Ondansetron as needed)" },
 ];
 
@@ -69,7 +69,7 @@ const steps = [
   {
     n: "01",
     heading: "Order your GLP-1 Readiness Panel",
-    body: "At-home fingerstick or venous draw. Baseline metabolic picture — HbA1c, lipids, glucose, thyroid.",
+    body: "At-home testing or a local lab draw. Baseline metabolic picture — HbA1c, lipids, glucose, thyroid.",
   },
   {
     n: "02",
@@ -84,7 +84,7 @@ const steps = [
   {
     n: "04",
     heading: "Monthly check-in + dose calibration",
-    body: "Weight, labs, how you feel. Provider adjusts dose. Coaching wraps the clinical track.",
+    body: "Weight, labs, how you feel. Provider adjusts dose based on your response.",
   },
 ];
 
@@ -92,7 +92,7 @@ export default function WeightLossPage() {
   return (
     <div className="surface-light">
       {/* Hero — light surface */}
-      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      <section className="relative pt-44 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{ background: "#F4EFE7" }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">

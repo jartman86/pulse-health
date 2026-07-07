@@ -65,7 +65,7 @@ export default function Nav() {
             alt="Pulse Health"
             width={638}
             height={668}
-            className="h-10 w-auto"
+            className="h-[100px] w-auto"
           />
         </Link>
 

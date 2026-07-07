@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Terms of Service" };
 
 export default function TermsPage() {
   return (
-    <section className="pt-28 pb-20 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+    <section className="pt-44 pb-20 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
       <div className="max-w-3xl mx-auto">
         <Eyebrow>Legal</Eyebrow>
         <h1 className="text-4xl font-extrabold mb-4" style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}>

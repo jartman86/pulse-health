@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function SafetyPage() {
   return (
-    <section className="pt-28 pb-20 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+    <section className="pt-44 pb-20 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
       <div className="max-w-3xl mx-auto">
         <Eyebrow>Legal</Eyebrow>
         <h1

@@ -31,7 +31,7 @@ const protocolPricing = [
 export default function PricingPage() {
   return (
     <>
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+      <section className="pt-44 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <Eyebrow>Pricing</Eyebrow>
           <h1

@@ -3,7 +3,6 @@ import Link from "next/link";
 import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
-import Card from "@/components/ui/Card";
 import Callout from "@/components/ui/Callout";
 import { ArrowRight, Activity, Zap, Heart, Brain, Clock, Lock } from "lucide-react";
 
@@ -35,7 +34,7 @@ function ConditionalLink({
 export const metadata: Metadata = {
   title: "Optimize — Peptides, NAD+, Sexual Health & Performance Medicine",
   description:
-    "Operator-grade performance medicine. Peptides, NAD+, sexual health, labs and coaching. Built for veterans, first responders, and high-performing founders.",
+    "Operator-grade performance medicine. Peptides, NAD+, sexual health, labs and provider oversight. Built for veterans, first responders, and high-performing founders.",
 };
 
 const protocols = [
@@ -55,7 +54,7 @@ const protocols = [
     tag: "NAD+ · Labs",
     tagColor: "var(--red)",
     description:
-      "NAD+ infusion or injection protocol paired with a complete biomarker panel and quarterly coaching check-ins. The full picture.",
+      "NAD+ infusion or injection protocol paired with a complete biomarker panel and quarterly monitoring check-ins. The full picture.",
     href: "/protocols/longevity-baseline",
     available: true,
   },
@@ -111,7 +110,7 @@ export default function OptimizePage() {
     <>
       {/* Hero — dark */}
       <section
-        className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative pt-44 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{ background: "var(--ink)" }}
       >
         <div
@@ -136,7 +135,7 @@ export default function OptimizePage() {
             <p className="text-lg leading-relaxed mb-8" style={{ color: "var(--bone-dim)" }}>
               Performance medicine for operators running at high output for a
               long time. Peptides, NAD+, sexual health, and comprehensive labs —
-              all under a coaching relationship designed to keep you in the
+              all under ongoing provider oversight designed to keep you in the
               field, not just functional.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -311,63 +310,6 @@ export default function OptimizePage() {
                 </ConditionalLink>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* The coaching track */}
-      <section
-        className="section-pad px-4 sm:px-6 lg:px-8"
-        style={{ background: "var(--ink)" }}
-      >
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <Eyebrow>The Coaching Track</Eyebrow>
-            <h2
-              className="text-3xl lg:text-4xl font-bold mb-6"
-              style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-            >
-              Protocol is the tool.
-              <br />
-              <span style={{ color: "var(--red)" }}>Coaching is the mission.</span>
-            </h2>
-            <p className="text-base leading-relaxed mb-4" style={{ color: "var(--bone-dim)" }}>
-              Every Pulse Optimize member connects with an Extreme Resilience
-              coach. The clinical protocols don&apos;t operate in isolation — they are
-              integrated into a transformation track covering functional health,
-              mental resilience, and purpose.
-            </p>
-            <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-              This is the piece most performance-medicine clinics don&apos;t have.
-              It&apos;s why Pulse exists.
-            </p>
-            <Link
-              href="/mission"
-              className="inline-flex items-center gap-2 mt-6 text-sm font-medium transition-colors hover:text-[var(--red)]"
-              style={{ color: "var(--bone-dim)" }}
-            >
-              Our mission <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="grid gap-4">
-            {[
-              { title: "Functional Health", body: "Labs, protocols, and physiological optimization." },
-              { title: "Mental Resilience", body: "Stress regulation, sleep, nervous system recovery." },
-              { title: "Purpose & Identity", body: "The transition most operators navigate alone. Not here." },
-            ].map((item) => (
-              <Card key={item.title} className="p-5">
-                <h3
-                  className="text-base font-bold mb-1"
-                  style={{ fontFamily: "var(--font-display)", color: "var(--red)" }}
-                >
-                  {item.title}
-                </h3>
-                <p className="text-sm" style={{ color: "var(--bone-dim)" }}>
-                  {item.body}
-                </p>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
