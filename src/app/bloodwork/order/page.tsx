@@ -58,7 +58,7 @@ export default async function BloodworkOrderPage({ searchParams }: Props) {
                     className="font-semibold text-sm"
                     style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
                   >
-                    At-Home Fingerstick Kit (SiPhox)
+                    At-Home Testing Kit
                   </div>
                   <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
                     Ships in 1–2 business days · Results in {panel.turnaround}

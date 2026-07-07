@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <!-- TRANSFORM: ascending summit path with pulse apex -->
+  <path d="M14 74 L38 44 L50 58 L70 26" stroke="#141110" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- arrowhead at apex -->
+  <path d="M58 26 h12 v12" stroke="#A22633" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- baseline -->
+  <path d="M14 82 h68" stroke="#141110" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8"/>
+</svg>

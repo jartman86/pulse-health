@@ -6,6 +6,7 @@ const footerLinks = {
   Programs: [
     { href: "/weight-loss", label: "Weight Loss" },
     { href: "/optimize", label: "Optimize" },
+    { href: "/transform", label: "Transform (HERO)" },
     { href: "/bloodwork", label: "Start with Bloodwork" },
     { href: "/protocols", label: "All Protocols" },
     { href: "/pricing", label: "Pricing" },

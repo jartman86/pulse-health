@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <!-- MEASURE: lab vial with pulse readout -->
+  <rect x="30" y="14" width="20" height="10" rx="2" stroke="#141110" stroke-width="4"/>
+  <path d="M34 24 v40 a6 6 0 0 0 12 0 V24" stroke="#141110" stroke-width="4" stroke-linecap="round"/>
+  <path d="M34 48 h12" stroke="#141110" stroke-width="3" stroke-linecap="round"/>
+  <path d="M34 48 v16 a6 6 0 0 0 12 0 V48 Z" fill="#A22633"/>
+  <!-- pulse readout line -->
+  <path d="M56 56 h8 l4 -12 6 20 5 -14 3 6 h8" stroke="#A22633" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- tick marks -->
+  <path d="M50 32 h6 M50 40 h6" stroke="#141110" stroke-width="3" stroke-linecap="round"/>
+</svg>

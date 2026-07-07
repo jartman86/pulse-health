@@ -15,7 +15,7 @@ const steps = [
     n: "01",
     phase: "Bloodwork",
     title: "Order your panel",
-    body: "Choose your at-home SiPhox panel or venous Quest draw based on your goal. No consult required to start. Kit ships in 1–2 business days.",
+    body: "Choose your at-home panel or local lab draw based on your goal. No consult required to start. Kit ships in 1–2 business days.",
     cta: { label: "Choose a panel", href: "/bloodwork" },
     mydose: false,
   },

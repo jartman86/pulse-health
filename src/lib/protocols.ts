@@ -141,7 +141,7 @@ export const protocols: Protocol[] = [
       "Ongoing labs + monitoring",
       "Coaching integration",
     ],
-    labsRequired: ["Ultimate 360 Panel", "Venous draw (Quest)"],
+    labsRequired: ["Ultimate 360 Panel", "Local lab draw"],
     price: 0,
     available: false,
     availableDate: "Q3 2026",

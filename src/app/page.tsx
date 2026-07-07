@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -40,6 +41,27 @@ export default function HomePage() {
         className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{ background: "var(--ink)" }}
       >
+        {/* Hero background image */}
+        <Image
+          src="/images/hero/pulse-hero-graded-web.jpg"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          quality={85}
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+
+        {/* Scrim for text contrast over the photo */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(20,17,16,0.92) 0%, rgba(20,17,16,0.75) 45%, rgba(20,17,16,0.35) 75%, rgba(20,17,16,0.15) 100%)",
+          }}
+        />
+
         {/* Background grid */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -54,25 +76,51 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto w-full">
           <div className="max-w-3xl">
-            <Eyebrow>Performance Medicine</Eyebrow>
+            <Eyebrow>For Those Who Serve — And Who Never Stop</Eyebrow>
 
             <h1
               className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight mb-6"
               style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
             >
-              Built by operators.
+              Keep a Pulse
               <br />
-              <span style={{ color: "var(--red)" }}>Calibrated for performance.</span>
+              <span style={{ color: "var(--red)" }}>on Your Health.</span>
             </h1>
 
             <p
-              className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl"
+              className="text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl"
               style={{ color: "var(--bone-dim)" }}
             >
-              Pulse is a telehealth performance-medicine clinic built for
-              veterans, first responders, and founders who expect precision
-              tools — not a wellness app. Start with your bloodwork. Let the
-              data lead.
+              Advanced performance medicine for veterans, first responders, and
+              healthcare workers — built by people who understand the stress
+              you carry, and trained to treat the cause instead of managing
+              the symptom.
+            </p>
+
+            {/* Primary CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <Link
+                href="/bloodwork"
+                className="inline-flex items-center justify-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110 active:scale-[0.98]"
+                style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+              >
+                Start Your Bloodwork <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/how-it-works"
+                className="inline-flex items-center justify-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:border-[var(--red-bright)]"
+                style={{ borderColor: "#5A3030", color: "#E8B6AE" }}
+              >
+                See How It Works
+              </Link>
+            </div>
+
+            {/* Trust bar */}
+            <p
+              className="mb-10 text-xs sm:text-sm uppercase tracking-widest"
+              style={{ fontFamily: "var(--font-mono)", color: "var(--bone-dim)", letterSpacing: "0.08em" }}
+            >
+              Veteran &amp; First Responder Founded · Physician-Supervised · Root-Cause Protocols
             </p>
 
             {/* The fork */}

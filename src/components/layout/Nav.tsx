@@ -10,6 +10,7 @@ import PulseLogo from "@/components/ui/PulseLogo";
 const navLinks = [
   { href: "/weight-loss", label: "Weight Loss" },
   { href: "/optimize", label: "Optimize" },
+  { href: "/transform", label: "Transform" },
   { href: "/bloodwork", label: "Bloodwork" },
   { href: "/protocols", label: "Protocols" },
   { href: "/pricing", label: "Pricing" },

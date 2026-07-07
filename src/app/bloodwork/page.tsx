@@ -83,7 +83,7 @@ export default function BloodworkPage() {
                         className="font-bold text-sm"
                         style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
                       >
-                        At-Home Fingerstick (SiPhox)
+                        At-Home Testing
                       </span>
                       <span
                         className="text-xs px-2 py-0.5 rounded-full"
@@ -97,9 +97,9 @@ export default function BloodworkPage() {
                       </span>
                     </div>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                      Kit ships to your door. Fingerstick collection — no
-                      appointment, no lab visit. White-labeled Pulse kit.
-                      Results in 5–7 days.
+                      Collect your sample at home — no appointment, no clinic
+                      visit required. Pulse kit ships to your door. Results in
+                      5–7 days.
                     </p>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function BloodworkPage() {
                         className="font-bold text-sm"
                         style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
                       >
-                        Venous Draw (Quest)
+                        Local Lab Testing
                       </span>
                       <span
                         className="text-xs px-2 py-0.5 rounded-full"
@@ -131,9 +131,9 @@ export default function BloodworkPage() {
                       </span>
                     </div>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                      Venous draw at a Quest Patient Service Center near you.
-                      Required for comprehensive hormone panels ahead of
-                      TRT/HRT (Q3 2026). 2,200+ locations nationwide.
+                      Visit a local draw site near you — no at-home kit
+                      required. Required for comprehensive hormone panels
+                      ahead of TRT/HRT (Q3 2026). 2,200+ locations nationwide.
                     </p>
                   </div>
                 </div>
@@ -295,7 +295,7 @@ export default function BloodworkPage() {
               {
                 n: "01",
                 title: "Kit arrives, you collect, kit ships back",
-                body: "Your SiPhox kit ships within 1–2 business days. Fingerstick at home, return the sample in the pre-paid mailer. Takes about 10 minutes.",
+                body: "Your at-home kit ships within 1–2 business days. Collect your sample at home, return it in the pre-paid mailer. Takes about 10 minutes.",
               },
               {
                 n: "02",

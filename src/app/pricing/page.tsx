@@ -50,6 +50,92 @@ export default function PricingPage() {
 
       <PulseLine className="opacity-40" />
 
+      {/* Pulse Core vs Pulse + HERO */}
+      <section id="hero" className="section-pad px-4 sm:px-6 lg:px-8 scroll-mt-24" style={{ background: "var(--ink)" }}>
+        <div className="max-w-5xl mx-auto">
+          <Eyebrow>Choose Your Track</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-4"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Pulse Core. Or Pulse + HERO.
+          </h2>
+          <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
+            Every patient starts on Pulse Core — bloodwork, physician-supervised
+            protocols, and prescribing, standalone and sellable on its own. Add{" "}
+            <Link href="/transform" className="underline underline-offset-2 hover:text-[var(--red)]" style={{ color: "var(--bone-dim)" }}>
+              HERO Transformation
+            </Link>{" "}
+            coaching whenever you want the full picture, not just the labs.
+          </p>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse" style={{ minWidth: "560px" }}>
+              <thead>
+                <tr style={{ borderBottom: "1px solid var(--line)" }}>
+                  <th className="text-left py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                    Included
+                  </th>
+                  <th className="text-center py-3 px-4 font-medium" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
+                    Pulse Core
+                  </th>
+                  <th className="text-center py-3 px-4 font-medium" style={{ color: "var(--red)", fontFamily: "var(--font-display)" }}>
+                    Pulse + HERO
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { label: "Bloodwork & Biomarker Panel", core: true, hero: true },
+                  { label: "Physician-Supervised Protocols", core: true, hero: true },
+                  { label: "Prescribing & Fulfillment", core: true, hero: true },
+                  { label: "HERO Transformation (5 modules)", core: false, hero: true },
+                  { label: "Resilience Coach → CPT Handoff", core: false, hero: true },
+                  { label: "MBSE Assessment (4-domain scoring)", core: false, hero: true },
+                ].map((row) => (
+                  <tr key={row.label} className="border-b" style={{ borderColor: "var(--line)" }}>
+                    <td className="py-4 px-4" style={{ color: "var(--bone-dim)" }}>
+                      {row.label}
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      {row.core ? (
+                        <Check size={16} className="inline" style={{ color: "var(--state-optimal)" }} />
+                      ) : (
+                        <span style={{ color: "var(--muted)" }}>—</span>
+                      )}
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      {row.hero ? (
+                        <Check size={16} className="inline" style={{ color: "var(--state-optimal)" }} />
+                      ) : (
+                        <span style={{ color: "var(--muted)" }}>—</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+                <tr>
+                  <td className="py-4 px-4 font-semibold" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
+                    Monthly investment
+                  </td>
+                  <td className="py-4 px-4 text-center" style={{ color: "var(--muted)" }}>
+                    Contact us
+                  </td>
+                  <td className="py-4 px-4 text-center" style={{ color: "var(--muted)" }}>
+                    Contact us
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
+            Core and HERO pricing is finalized per protocol at intake — reach out
+            or start with bloodwork to get an exact quote for your track.
+          </p>
+        </div>
+      </section>
+
+      <PulseLine className="opacity-40" />
+
       {/* Lab panels */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
         <div className="max-w-7xl mx-auto">
@@ -58,7 +144,7 @@ export default function PricingPage() {
             className="text-3xl font-bold mb-10"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            At-home bloodwork (SiPhox)
+            At-home bloodwork testing
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {labPanels.map((panel) => (
@@ -95,7 +181,7 @@ export default function PricingPage() {
             ))}
           </div>
           <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
-            Quest venous draw available for select panels — pricing quoted at checkout.
+            Local lab draw available for select panels — pricing quoted at checkout.
             HSA/FSA may apply.
           </p>
         </div>
