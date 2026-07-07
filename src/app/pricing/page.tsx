@@ -3,31 +3,32 @@ import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import Callout from "@/components/ui/Callout";
-import { protocols } from "@/lib/protocols";
 import { SIPHOX_PANELS } from "@/lib/integrations/siphox";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Pricing — Transparent, All-Inclusive Bundles",
+  title: "Pricing — Transparent, All-Inclusive Protocols",
   description:
-    "Pulse Health transparent pricing. No quiz-gated costs. See all protocol bundle prices and lab panel costs upfront.",
+    "Pulse Health transparent pricing. No quiz-gated costs, no tiers, no membership. See every protocol price and lab panel cost upfront.",
 };
-
-const membershipPerks = [
-  "10–15% off all protocol monthly fees",
-  "Priority provider messaging",
-  "Quarterly re-test included",
-  "Coaching session credits",
-  "Early access to new protocols (TRT/HRT Q3 2026)",
-  "HSA/FSA invoice on request",
-];
 
 const labPanels = Object.values(SIPHOX_PANELS);
 
-export default function PricingPage() {
-  const available = protocols.filter((p) => p.available);
-  const waitlist = protocols.filter((p) => !p.available);
+const protocolPricing = [
+  { product: "Tirzepatide", form: "Injectable", price: 249 },
+  { product: "Tirzepatide", form: "Sublingual", price: 369 },
+  { product: "Tirzepatide + B12", form: "Injectable", price: 299 },
+  { product: "Semaglutide + Glycine", form: "Injectable", price: 199 },
+  { product: "Semaglutide + B12", form: "Injectable", price: 190 },
+  { product: "Tirzepatide / NAD+", form: "Sublingual", price: 399 },
+  { product: "Gonadorelin", form: "Injectable", price: 170 },
+  { product: "Gonadorelin", form: "Sublingual", price: 162 },
+  { product: "Tesamorelin", form: "Injectable", price: 260 },
+  { product: "NAD+", form: "Injectable", price: 325 },
+  { product: "Glutathione", form: "Injectable", price: 220 },
+];
 
+export default function PricingPage() {
   return (
     <>
       <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
@@ -42,94 +43,9 @@ export default function PricingPage() {
             <span style={{ color: "var(--red)" }}>No quiz-gating.</span>
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "var(--bone-dim)" }}>
-            Every price listed is the full price. Lab cost, consult, medication,
-            and coaching are bundled. No surprise add-ons at checkout.
-          </p>
-        </div>
-      </section>
-
-      <PulseLine className="opacity-40" />
-
-      {/* Pulse Core vs Pulse + HERO */}
-      <section id="hero" className="section-pad px-4 sm:px-6 lg:px-8 scroll-mt-24" style={{ background: "var(--ink)" }}>
-        <div className="max-w-5xl mx-auto">
-          <Eyebrow>Choose Your Track</Eyebrow>
-          <h2
-            className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-          >
-            Pulse Core. Or Pulse + HERO.
-          </h2>
-          <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
-            Every patient starts on Pulse Core — bloodwork, physician-supervised
-            protocols, and prescribing, standalone and sellable on its own. Add{" "}
-            <Link href="/transform" className="underline underline-offset-2 hover:text-[var(--red)]" style={{ color: "var(--bone-dim)" }}>
-              HERO Transformation
-            </Link>{" "}
-            coaching whenever you want the full picture, not just the labs.
-          </p>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse" style={{ minWidth: "560px" }}>
-              <thead>
-                <tr style={{ borderBottom: "1px solid var(--line)" }}>
-                  <th className="text-left py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    Included
-                  </th>
-                  <th className="text-center py-3 px-4 font-medium" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
-                    Pulse Core
-                  </th>
-                  <th className="text-center py-3 px-4 font-medium" style={{ color: "var(--red)", fontFamily: "var(--font-display)" }}>
-                    Pulse + HERO
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { label: "Bloodwork & Biomarker Panel", core: true, hero: true },
-                  { label: "Physician-Supervised Protocols", core: true, hero: true },
-                  { label: "Prescribing & Fulfillment", core: true, hero: true },
-                  { label: "HERO Transformation (5 modules)", core: false, hero: true },
-                  { label: "Resilience Coach → CPT Handoff", core: false, hero: true },
-                  { label: "MBSE Assessment (4-domain scoring)", core: false, hero: true },
-                ].map((row) => (
-                  <tr key={row.label} className="border-b" style={{ borderColor: "var(--line)" }}>
-                    <td className="py-4 px-4" style={{ color: "var(--bone-dim)" }}>
-                      {row.label}
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      {row.core ? (
-                        <Check size={16} className="inline" style={{ color: "var(--state-optimal)" }} />
-                      ) : (
-                        <span style={{ color: "var(--muted)" }}>—</span>
-                      )}
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      {row.hero ? (
-                        <Check size={16} className="inline" style={{ color: "var(--state-optimal)" }} />
-                      ) : (
-                        <span style={{ color: "var(--muted)" }}>—</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-                <tr>
-                  <td className="py-4 px-4 font-semibold" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
-                    Monthly investment
-                  </td>
-                  <td className="py-4 px-4 text-center" style={{ color: "var(--muted)" }}>
-                    Contact us
-                  </td>
-                  <td className="py-4 px-4 text-center" style={{ color: "var(--muted)" }}>
-                    Contact us
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
-            Core and HERO pricing is finalized per protocol at intake — reach out
-            or start with bloodwork to get an exact quote for your track.
+            Every price listed is the full price. Lab cost, consult,
+            medication, and follow-up are bundled. No surprise add-ons at
+            checkout.
           </p>
         </div>
       </section>
@@ -189,170 +105,64 @@ export default function PricingPage() {
 
       {/* Protocol pricing */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
-        <div className="max-w-7xl mx-auto">
-          <Eyebrow number="02">Protocol Bundles</Eyebrow>
+        <div className="max-w-4xl mx-auto">
+          <Eyebrow number="02">Protocol Pricing</Eyebrow>
           <h2
-            className="text-3xl font-bold mb-10"
+            className="text-3xl font-bold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            All-inclusive monthly protocols
+            Pick your protocol. Pay the listed price.
           </h2>
+          <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
+            Bloodwork comes back, your provider recommends a protocol, you
+            pick it and pay the all-in monthly price below. That&apos;s the
+            entire transaction — no tiers, no membership, no upsell.
+          </p>
+
           <div className="overflow-x-auto">
-            <table
-              className="w-full text-sm border-collapse"
-              style={{ minWidth: "600px" }}
-            >
+            <table className="w-full text-sm border-collapse" style={{ minWidth: "480px" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--line)" }}>
                   <th className="text-left py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    Protocol
+                    Product
                   </th>
                   <th className="text-left py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    Door
+                    Form
                   </th>
                   <th className="text-right py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    Retail / mo
+                    Monthly Price
                   </th>
-                  <th className="text-right py-3 px-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    Member / mo
-                  </th>
-                  <th className="py-3 px-4" />
                 </tr>
               </thead>
               <tbody>
-                {available.map((p) => (
+                {protocolPricing.map((row) => (
                   <tr
-                    key={p.slug}
-                    className="border-b transition-colors hover:bg-[var(--surface)]"
+                    key={`${row.product}-${row.form}`}
+                    className="border-b"
                     style={{ borderColor: "var(--line)" }}
                   >
-                    <td className="py-4 px-4">
-                      <div className="font-semibold" style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}>
-                        {p.name}
-                      </div>
-                      <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
-                        {p.tagline}
-                      </div>
+                    <td className="py-4 px-4 font-semibold" style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}>
+                      {row.product}
                     </td>
-                    <td className="py-4 px-4">
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "var(--surface-2)",
-                          color: p.door === "weight-loss" ? "var(--state-optimal)" : p.door === "optimize" ? "var(--red)" : "var(--bone-dim)",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
-                        {p.door === "both" ? "Both" : p.door === "weight-loss" ? "Weight Loss" : "Optimize"}
-                      </span>
+                    <td className="py-4 px-4" style={{ color: "var(--muted)" }}>
+                      {row.form}
                     </td>
                     <td className="py-4 px-4 text-right tabular-nums font-semibold" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
-                      ${p.price}
-                    </td>
-                    <td
-                      className="py-4 px-4 text-right tabular-nums"
-                      style={{ color: "var(--red)", fontFamily: "var(--font-display)" }}
-                    >
-                      {p.membershipPrice ? `$${p.membershipPrice}` : "—"}
-                    </td>
-                    <td className="py-4 px-4 text-right">
-                      <Link
-                        href={`/protocols/${p.slug}`}
-                        className="text-xs font-medium flex items-center gap-1 justify-end hover:text-[var(--red)]"
-                        style={{ color: "var(--muted)" }}
-                      >
-                        View <ArrowRight size={11} />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-                {waitlist.map((p) => (
-                  <tr
-                    key={p.slug}
-                    className="border-b opacity-50"
-                    style={{ borderColor: "var(--line)" }}
-                  >
-                    <td className="py-4 px-4">
-                      <div className="font-semibold" style={{ fontFamily: "var(--font-display)", color: "var(--muted)" }}>
-                        {p.name}
-                      </div>
-                      <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
-                        {p.availableDate} — Waitlist
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{ background: "var(--surface-2)", color: "var(--muted)", fontFamily: "var(--font-mono)" }}
-                      >
-                        Optimize
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-right" style={{ color: "var(--muted)" }}>TBA</td>
-                    <td className="py-4 px-4 text-right" style={{ color: "var(--muted)" }}>TBA</td>
-                    <td className="py-4 px-4 text-right">
-                      <Link
-                        href={`/protocols/${p.slug}#waitlist`}
-                        className="text-xs hover:text-[var(--red)]"
-                        style={{ color: "var(--muted)" }}
-                      >
-                        Waitlist →
-                      </Link>
+                      ${row.price}/mo
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </div>
-      </section>
 
-      {/* Membership */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
-        <div className="max-w-4xl mx-auto">
-          <Eyebrow number="03">Membership</Eyebrow>
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2
-                className="text-3xl font-bold mb-4"
-                style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-              >
-                Pulse Member
-                <br />
-                <span style={{ color: "var(--red)" }}>$49 / month</span>
-              </h2>
-              <p className="text-base leading-relaxed" style={{ color: "var(--bone-dim)" }}>
-                For operators who are all-in on the full performance-medicine
-                track. Membership cuts protocol costs and unlocks the coaching
-                and community layer.
-              </p>
-            </div>
-            <div
-              className="p-6 rounded-xl border"
-              style={{ background: "var(--surface)", borderColor: "var(--red)", borderWidth: 1.5 }}
-            >
-              <ul className="flex flex-col gap-3">
-                {membershipPerks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-3">
-                    <Check size={14} className="mt-0.5 shrink-0" style={{ color: "var(--state-optimal)" }} />
-                    <span className="text-sm" style={{ color: "var(--bone-dim)" }}>
-                      {perk}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/bloodwork"
-                className="mt-6 inline-flex items-center gap-2 w-full justify-center text-sm font-semibold px-5 py-3 rounded hover:brightness-110"
-                style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
-              >
-                Start with Bloodwork <ArrowRight size={14} />
-              </Link>
-              <p className="text-xs text-center mt-3" style={{ color: "var(--muted)" }}>
-                Membership activates after first protocol enrollment.
-              </p>
-            </div>
-          </div>
+          <Link
+            href="/bloodwork"
+            className="mt-8 inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
+            style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+          >
+            Start Your Bloodwork <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 

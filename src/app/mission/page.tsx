@@ -27,7 +27,7 @@ const values = [
   },
   {
     title: "Transformation, Not Transaction",
-    body: "Protocol paired with coaching, not a prescription and a goodbye.",
+    body: "Protocol paired with follow-up and monitoring, not a prescription and a goodbye.",
   },
   {
     title: "Proactive, Not Reactive",
@@ -134,7 +134,7 @@ export default function MissionPage() {
               {
                 icon: Sparkles,
                 title: "Transform",
-                body: "Root-cause resolution paired with the coaching and accountability to make it last.",
+                body: "Root-cause resolution, monitored and adjusted until it sticks.",
               },
             ].map((pillar) => (
               <Card key={pillar.title} className="flex flex-col gap-3 p-6">
@@ -247,15 +247,7 @@ export default function MissionPage() {
             >
               Extreme Resilience
             </Link>
-            , our holistic transformation coaching partner — see{" "}
-            <Link
-              href="/transform"
-              className="underline underline-offset-2 hover:text-[var(--red)]"
-              style={{ color: "var(--bone-dim)" }}
-            >
-              Transform: The HERO Upgrade
-            </Link>{" "}
-            for how the two connect.
+            , built on the same operator identity.
           </p>
         </div>
       </section>

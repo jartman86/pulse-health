@@ -101,11 +101,6 @@ export default function ProtocolsPage() {
                           >
                             ${p.price}
                           </span>
-                          {p.membershipPrice && (
-                            <span className="text-xs ml-2" style={{ color: "var(--muted)" }}>
-                              (${p.membershipPrice}/mo members)
-                            </span>
-                          )}
                         </div>
                         <Link
                           href={`/protocols/${p.slug}`}

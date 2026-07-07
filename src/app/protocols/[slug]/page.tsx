@@ -135,14 +135,6 @@ export default async function ProtocolPage({ params }: Props) {
                     per month
                   </span>
                 </div>
-                {protocol.membershipPrice && (
-                  <span
-                    className="text-sm"
-                    style={{ color: "var(--red)", fontFamily: "var(--font-mono)" }}
-                  >
-                    ${protocol.membershipPrice}/mo members
-                  </span>
-                )}
               </div>
 
               <h3

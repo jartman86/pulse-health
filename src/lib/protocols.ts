@@ -7,7 +7,6 @@ export interface Protocol {
   includes: string[];
   labsRequired: string[];
   price: number;
-  membershipPrice?: number;
   available: boolean;
   availableDate?: string;
   medications?: string[];
@@ -32,7 +31,6 @@ export const protocols: Protocol[] = [
     ],
     labsRequired: ["GLP-1 Readiness Panel"],
     price: 349,
-    membershipPrice: 299,
     available: true,
     medications: ["Semaglutide", "Tirzepatide", "Oral semaglutide", "Metformin (adjunct)"],
     safetyNote:
@@ -55,7 +53,6 @@ export const protocols: Protocol[] = [
     ],
     labsRequired: ["Hormone Panel"],
     price: 449,
-    membershipPrice: 379,
     available: true,
     medications: ["Sermorelin", "NAD+ (injection)", "B12 (methylcobalamin)"],
     safetyNote:
@@ -77,7 +74,6 @@ export const protocols: Protocol[] = [
     ],
     labsRequired: ["Hormone Panel"],
     price: 199,
-    membershipPrice: 169,
     available: true,
     medications: ["PT-141 (bremelanotide)", "Sildenafil", "Tadalafil"],
     safetyNote:
@@ -100,7 +96,6 @@ export const protocols: Protocol[] = [
     ],
     labsRequired: ["Ultimate 360 Panel"],
     price: 599,
-    membershipPrice: 499,
     available: true,
     medications: ["NAD+ (injection)", "Methylene Blue (ultrapure, optional)"],
     safetyNote:
@@ -121,7 +116,6 @@ export const protocols: Protocol[] = [
     ],
     labsRequired: [],
     price: 129,
-    membershipPrice: 99,
     available: true,
     medications: ["Minoxidil", "Minoxidil combinations"],
     safetyNote:
