@@ -49,7 +49,7 @@ export default function HomePage() {
           preload
           sizes="100vw"
           quality={85}
-          style={{ objectFit: "cover", objectPosition: "40% center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
 
         {/* Scrim for text contrast over the photo */}
