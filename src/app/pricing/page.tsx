@@ -4,7 +4,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import Callout from "@/components/ui/Callout";
 import { SIPHOX_PANELS } from "@/lib/integrations/siphox";
-import { ArrowRight } from "lucide-react";
+import ProtocolTermStep from "@/components/ui/ProtocolTermStep";
 
 export const metadata: Metadata = {
   title: "Pricing — Transparent, All-Inclusive Protocols",
@@ -156,13 +156,7 @@ export default function PricingPage() {
             </table>
           </div>
 
-          <Link
-            href="/bloodwork"
-            className="mt-8 inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
-            style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
-          >
-            Start Your Bloodwork <ArrowRight size={16} />
-          </Link>
+          <ProtocolTermStep />
         </div>
       </section>
 
