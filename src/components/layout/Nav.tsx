@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/optimize", label: "Optimize" },
   { href: "/bloodwork", label: "Bloodwork" },
   { href: "/protocols", label: "Protocols" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/membership", label: "Membership" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/field-notes", label: "Field Notes" },
 ];

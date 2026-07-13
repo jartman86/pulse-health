@@ -4,7 +4,7 @@ import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Callout from "@/components/ui/Callout";
-import { ArrowRight, Activity, Zap, Heart, Brain, Clock, Lock } from "lucide-react";
+import { ArrowRight, Activity, Zap, Heart, Clock, Lock } from "lucide-react";
 
 function ConditionalLink({
   href,
@@ -44,7 +44,7 @@ const protocols = [
     tag: "Peptides",
     tagColor: "var(--state-optimal)",
     description:
-      "Sermorelin, NAD+, B12 — targeted at sleep quality, inflammation, and cellular recovery. The difference between maintenance and peak function.",
+      "Recover like it's still your job. A personalized protocol targeting sleep quality, inflammation, and cellular recovery — for operators pushing hard on recovery.",
     href: "/protocols/recovery-repair",
     available: true,
   },
@@ -54,7 +54,7 @@ const protocols = [
     tag: "NAD+ · Labs",
     tagColor: "var(--red)",
     description:
-      "NAD+ infusion or injection protocol paired with a complete biomarker panel and quarterly monitoring check-ins. The full picture.",
+      "Know where you stand. Build from there. Comprehensive baseline labs plus a protocol built to extend your operational years, not just your lifespan.",
     href: "/protocols/longevity-baseline",
     available: true,
   },
@@ -64,18 +64,8 @@ const protocols = [
     tag: "Sexual Health",
     tagColor: "var(--red-bright)",
     description:
-      "PT-141 (bremelanotide), sildenafil, and tadalafil — individually or in combination. Provider-supervised, labs-gated for safe dosing.",
+      "Get your edge back. Energy, libido, and confidence — addressed clinically, personalized to your labs and goals.",
     href: "/protocols/drive",
-    available: true,
-  },
-  {
-    icon: Brain,
-    name: "Cognition + Focus",
-    tag: "Methylene Blue",
-    tagColor: "var(--state-optimal)",
-    description:
-      "Methylene Blue (ultrapure) for cognitive performance and mitochondrial support. Stacked with NAD+ for operators running high cognitive loads.",
-    href: "/protocols/cognition",
     available: true,
   },
   {

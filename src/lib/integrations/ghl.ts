@@ -79,3 +79,28 @@ export const events = {
   coachingEnrolled: (email: string) =>
     trackEvent({ name: "coaching_enrolled", email, properties: {} }),
 };
+
+// CONFIG[ghl_tier_plan_ids] — membership tiers are billed via GHL, separate
+// from the MyDose clinical charge. Real plan IDs are not yet configured
+// (see src/lib/tiers.ts `ghlPlanId`); this stub logs in dev and no-ops
+// safely if GHL isn't configured, matching the pattern above.
+export async function subscribeTier(params: {
+  email: string;
+  tierId: "operator" | "full-spectrum";
+}): Promise<{ subscribed: boolean }> {
+  if (isDev()) {
+    console.log("[GHL stub] subscribeTier:", params);
+    return { subscribed: true };
+  }
+
+  const res = await fetch(`${WEBHOOK_URL}/subscriptions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify(params),
+  });
+  if (!res.ok) throw new Error(`GHL tier subscribe failed: ${res.status}`);
+  return { subscribed: true };
+}

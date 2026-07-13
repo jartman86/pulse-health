@@ -4,12 +4,13 @@ import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Card from "@/components/ui/Card";
+import { tiers } from "@/lib/tiers";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 const outcomes = [
-  { stat: "12–25%", label: "Avg. body weight reduction", sub: "GLP-1 program, 12 months" },
-  { stat: "6–8 wks", label: "First protocol results visible", sub: "Labs + provider check-in" },
-  { stat: "1 in 3", label: "Operators report improved sleep week 4", sub: "Peptide protocol cohort" },
+  { stat: "Labs First", label: "Every protocol starts with your bloodwork", sub: "Not a quiz. Not a guess." },
+  { stat: "6–8 wks", label: "First protocol check-in", sub: "Labs + provider review" },
+  { stat: "Provider-Led", label: "Every dose calibrated by a licensed provider", sub: "Personalized to your labs and history" },
 ];
 
 const fieldNotesTeasers = [
@@ -284,6 +285,56 @@ export default function HomePage() {
           <TrustBadges />
         </div>
       </section>
+
+      {/* Tier teaser — add coaching after your consult, not a pre-purchase decision */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>Membership</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-4"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Add coaching after your consult
+          </h2>
+          <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
+            Every patient starts on Foundation — your protocol, no separate fee.
+            Operator and Full Spectrum add ongoing monitoring and coaching once
+            you've decided you want it.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {tiers.map((tier) => (
+              <div
+                key={tier.id}
+                className="flex flex-col gap-2 p-5 rounded-lg border"
+                style={{
+                  background: "var(--surface)",
+                  borderColor: tier.heroIncluded ? "var(--red)" : "var(--line)",
+                  borderWidth: tier.heroIncluded ? 1.5 : 1,
+                }}
+              >
+                <span
+                  className="text-sm font-bold"
+                  style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                >
+                  {tier.name}
+                </span>
+                <span className="text-xs" style={{ color: "var(--red)", fontFamily: "var(--font-mono)" }}>
+                  {tier.oneLiner}
+                </span>
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/membership"
+            className="inline-flex items-center gap-1 mt-6 text-sm font-medium transition-colors hover:text-[var(--red)]"
+            style={{ color: "var(--bone-dim)" }}
+          >
+            Compare membership tiers <ChevronRight size={14} />
+          </Link>
+        </div>
+      </section>
+
+      <PulseLine className="opacity-30" />
 
       {/* Field Notes teaser */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>

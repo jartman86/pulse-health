@@ -3,7 +3,7 @@ import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import Callout from "@/components/ui/Callout";
-import { protocols } from "@/lib/protocols";
+import { protocols, CONSULT_FEE } from "@/lib/protocols";
 import { ArrowRight, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -91,37 +91,53 @@ export default function ProtocolsPage() {
                     {p.description}
                   </p>
 
-                  <div className="border-t pt-4 flex items-center justify-between" style={{ borderColor: "var(--line)" }}>
-                    {p.available ? (
-                      <>
-                        <div>
-                          <span
-                            className="text-2xl font-extrabold"
-                            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  <div className="border-t pt-4" style={{ borderColor: "var(--line)" }}>
+                    <div className="flex items-center justify-between">
+                      {p.available ? (
+                        <>
+                          <div>
+                            {p.priceStartingAt && (
+                              <div
+                                className="text-xs uppercase tracking-wide mb-0.5"
+                                style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
+                              >
+                                Starting at
+                              </div>
+                            )}
+                            <span
+                              className="text-2xl font-extrabold"
+                              style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                            >
+                              ${p.price}
+                              <span className="text-sm font-normal" style={{ color: "var(--muted)" }}>/mo</span>
+                            </span>
+                          </div>
+                          <Link
+                            href={`/protocols/${p.slug}`}
+                            className="flex items-center gap-1 text-sm font-semibold px-4 py-2 rounded transition-all hover:brightness-110"
+                            style={{
+                              background: "var(--red)",
+                              color: "var(--ink)",
+                              fontFamily: "var(--font-display)",
+                            }}
                           >
-                            ${p.price}
-                          </span>
-                        </div>
+                            View <ArrowRight size={13} />
+                          </Link>
+                        </>
+                      ) : (
                         <Link
-                          href={`/protocols/${p.slug}`}
-                          className="flex items-center gap-1 text-sm font-semibold px-4 py-2 rounded transition-all hover:brightness-110"
-                          style={{
-                            background: "var(--red)",
-                            color: "var(--ink)",
-                            fontFamily: "var(--font-display)",
-                          }}
+                          href={`/protocols/${p.slug}#waitlist`}
+                          className="text-sm underline underline-offset-2 hover:text-[var(--red-bright)]"
+                          style={{ color: "var(--muted)" }}
                         >
-                          View <ArrowRight size={13} />
+                          Join waitlist →
                         </Link>
-                      </>
-                    ) : (
-                      <Link
-                        href={`/protocols/${p.slug}#waitlist`}
-                        className="text-sm underline underline-offset-2 hover:text-[var(--red-bright)]"
-                        style={{ color: "var(--muted)" }}
-                      >
-                        Join waitlist →
-                      </Link>
+                      )}
+                    </div>
+                    {p.available && (
+                      <p className="text-xs mt-2" style={{ color: "var(--muted)" }}>
+                        Consult from ${CONSULT_FEE} — treatment billed separately if prescribed.
+                      </p>
                     )}
                   </div>
                 </div>

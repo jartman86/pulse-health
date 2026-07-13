@@ -8,7 +8,7 @@ const footerLinks = {
     { href: "/optimize", label: "Optimize" },
     { href: "/bloodwork", label: "Start with Bloodwork" },
     { href: "/protocols", label: "All Protocols" },
-    { href: "/pricing", label: "Pricing" },
+    { href: "/membership", label: "Membership" },
   ],
   "Learn More": [
     { href: "/how-it-works", label: "How It Works" },

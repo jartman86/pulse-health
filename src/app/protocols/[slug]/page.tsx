@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProtocol, protocols } from "@/lib/protocols";
+import { getProtocol, protocols, CONSULT_FEE, PROTOCOL_FAQ } from "@/lib/protocols";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import Callout from "@/components/ui/Callout";
@@ -107,11 +107,11 @@ export default async function ProtocolPage({ params }: Props) {
                   Start Your Bloodwork <ArrowRight size={16} />
                 </Link>
                 <Link
-                  href="/pricing"
+                  href="/protocols"
                   className="inline-flex items-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:border-[var(--red-bright)]"
                   style={{ borderColor: "#5A3030", color: "#E8B6AE" }}
                 >
-                  See Pricing
+                  See All Protocols
                 </Link>
               </div>
             )}
@@ -123,18 +123,32 @@ export default async function ProtocolPage({ params }: Props) {
               className="rounded-xl border p-6"
               style={{ background: "var(--surface)", borderColor: "var(--red)", borderWidth: 1.5 }}
             >
-              <div className="flex items-baseline justify-between mb-6">
-                <div>
-                  <span
-                    className="text-4xl font-extrabold"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+              <div className="mb-6">
+                {protocol.priceStartingAt && (
+                  <div
+                    className="text-xs uppercase tracking-wide mb-1"
+                    style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
                   >
-                    ${protocol.price}
-                  </span>
-                  <span className="text-sm ml-2" style={{ color: "var(--muted)" }}>
-                    per month
-                  </span>
+                    Starting at
+                  </div>
+                )}
+                <div className="flex items-baseline justify-between">
+                  <div>
+                    <span
+                      className="text-4xl font-extrabold"
+                      style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                    >
+                      ${protocol.price}
+                    </span>
+                    <span className="text-sm ml-2" style={{ color: "var(--muted)" }}>
+                      per month
+                    </span>
+                  </div>
                 </div>
+                <p className="text-xs mt-2" style={{ color: "var(--muted)" }}>
+                  Consult from ${CONSULT_FEE} — treatment billed separately if prescribed.
+                  Final medication and dose confirmed by your provider after evaluation.
+                </p>
               </div>
 
               <h3
@@ -169,8 +183,22 @@ export default async function ProtocolPage({ params }: Props) {
 
       <PulseLine className="opacity-40" />
 
-      {/* Medications */}
-      {protocol.medications && protocol.medications.length > 0 && (
+      {/* Who It's For */}
+      {!isWaitlist && protocol.whoItsFor && (
+        <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+          <div className="max-w-4xl mx-auto">
+            <Eyebrow>Who It&apos;s For</Eyebrow>
+            <p className="text-lg leading-relaxed" style={{ color: "var(--bone-dim)" }}>
+              {protocol.whoItsFor}
+            </p>
+          </div>
+        </section>
+      )}
+
+      <PulseLine className="opacity-40" />
+
+      {/* Medications — disclosure zone */}
+      {protocol.medicationsTable.length > 0 && (
         <section
           className="section-pad px-4 sm:px-6 lg:px-8"
           style={{ background: "var(--ink-2)" }}
@@ -178,35 +206,81 @@ export default async function ProtocolPage({ params }: Props) {
           <div className="max-w-4xl mx-auto">
             <Eyebrow>Medications Used</Eyebrow>
             <h2
-              className="text-2xl font-bold mb-6"
+              className="text-2xl font-bold mb-4"
               style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
             >
               What may be prescribed
             </h2>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {protocol.medications.map((med) => (
-                <span
-                  key={med}
-                  className="px-3 py-1.5 rounded-full text-sm border"
-                  style={{
-                    borderColor: "var(--line)",
-                    background: "var(--surface)",
-                    color: "var(--bone-dim)",
-                    fontFamily: "var(--font-mono)",
-                  }}
-                >
-                  {med}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-              Specific medications and dosing are determined by your provider based
-              on your labs, medical history, and goals. &ldquo;May support&rdquo; language
-              applies — outcomes vary by individual.
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
+              Your clinician selects and adjusts your specific medication and dose
+              based on your labs, history, and response — this is not a menu you
+              choose from at purchase.
             </p>
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full text-sm border-collapse" style={{ minWidth: "560px" }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid var(--line)" }}>
+                    <th className="text-left py-2.5 pr-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                      Medication
+                    </th>
+                    <th className="text-left py-2.5 pr-4 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                      Route
+                    </th>
+                    <th className="text-left py-2.5 font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                      Clinical Note
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {protocol.medicationsTable.map((med) => (
+                    <tr key={med.name} style={{ borderBottom: "1px solid var(--line)" }}>
+                      <td className="py-3 pr-4 font-semibold" style={{ color: "var(--bone)", fontFamily: "var(--font-display)" }}>
+                        {med.name}
+                      </td>
+                      <td className="py-3 pr-4" style={{ color: "var(--bone-dim)" }}>
+                        {med.route}
+                      </td>
+                      <td className="py-3" style={{ color: "var(--muted)" }}>
+                        {med.note}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             {protocol.safetyNote && (
               <Callout variant="risk">{protocol.safetyNote}</Callout>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {!isWaitlist && (
+        <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+          <div className="max-w-4xl mx-auto">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2
+              className="text-2xl font-bold mb-8"
+              style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+            >
+              Common questions
+            </h2>
+            <div className="flex flex-col gap-6">
+              {PROTOCOL_FAQ.map((item) => (
+                <div key={item.question}>
+                  <h3
+                    className="text-base font-semibold mb-1.5"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  >
+                    {item.question}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

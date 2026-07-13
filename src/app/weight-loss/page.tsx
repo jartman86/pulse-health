@@ -284,6 +284,15 @@ export default function WeightLossPage() {
             Mounjaro) are FDA-approved where accessible. Your provider discusses
             all options.
           </Callout>
+          <p className="mt-4 text-sm">
+            <Link
+              href="/protocols/operator-reset"
+              className="underline underline-offset-2"
+              style={{ color: "#5A5A5A" }}
+            >
+              See full prescribing details and safety information
+            </Link>
+          </p>
         </div>
       </section>
 
