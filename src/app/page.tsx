@@ -4,13 +4,87 @@ import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Card from "@/components/ui/Card";
+import OutcomeCard from "@/components/ui/OutcomeCard";
 import { tiers } from "@/lib/tiers";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { categories } from "@/lib/categories";
+import { CONSULT_FEE } from "@/lib/compounds";
+import { ArrowRight, ChevronRight, Scale, Activity, HeartPulse, Brain, Flame, Sparkles, FlaskConical, Stethoscope, ClipboardList, Users } from "lucide-react";
 
 const outcomes = [
   { stat: "Labs First", label: "Every protocol starts with your bloodwork", sub: "Not a quiz. Not a guess." },
   { stat: "6–8 wks", label: "First protocol check-in", sub: "Labs + provider review" },
   { stat: "Provider-Led", label: "Every dose calibrated by a licensed provider", sub: "Personalized to your labs and history" },
+];
+
+const categoryIcons: Record<string, typeof Scale> = {
+  "weight-loss": Scale,
+  "hormone-optimization": Activity,
+  "recovery-performance": HeartPulse,
+  "cognition-energy": Brain,
+  "sexual-health": Flame,
+  "hair-restoration": Sparkles,
+};
+
+const processSteps = [
+  { icon: FlaskConical, label: "Test", body: "SiPhox at-home kit or a Quest venous draw — your call." },
+  { icon: Stethoscope, label: "Consult", body: "A licensed physician reviews your results with you." },
+  { icon: ClipboardList, label: "Protocol", body: "A personalized plan, prescribed and shipped." },
+  { icon: Users, label: "Coach", body: "Ongoing optimization — not just a refill." },
+];
+
+const faqGroups = [
+  {
+    group: "Getting Started",
+    items: [
+      {
+        q: "What does the $65 entry offer include?",
+        a: "A biomarker lab panel plus a licensed provider consult to review your results and recommend next steps — no separate quiz or guesswork.",
+      },
+      {
+        q: "Do I need to know what I want before I start?",
+        a: "No. Pick the outcome you're chasing — weight loss or optimization — and your labs plus your provider narrow it down from there.",
+      },
+    ],
+  },
+  {
+    group: "Consult & Plan",
+    items: [
+      {
+        q: "Who reviews my labs?",
+        a: "A licensed healthcare provider reviews your results and determines whether a prescription is appropriate for you.",
+      },
+      {
+        q: "Can I choose my own medication?",
+        a: "Your provider selects and adjusts your specific medication and dose based on your labs, history, and response — it's never a self-service menu.",
+      },
+    ],
+  },
+  {
+    group: "During Treatment",
+    items: [
+      {
+        q: "How often are labs re-checked?",
+        a: "Your first check-in is typically 6–8 weeks after starting, with ongoing monitoring cadence set by your provider and membership tier.",
+      },
+      {
+        q: "What if something isn't working?",
+        a: "Your care team adjusts your protocol based on follow-up labs and how you're responding — treatment isn't locked in at purchase.",
+      },
+    ],
+  },
+  {
+    group: "Membership & Pricing",
+    items: [
+      {
+        q: "Is membership required?",
+        a: "No. Foundation — your protocol, consult, and labs — has no separate Pulse fee. Operator and Full Spectrum add ongoing coaching once you want it.",
+      },
+      {
+        q: "Is treatment covered by insurance?",
+        a: "Most compounded medications and coaching aren't covered by insurance. Lab panels and consults may be HSA/FSA eligible — check your plan.",
+      },
+    ],
+  },
 ];
 
 const fieldNotesTeasers = [
@@ -213,6 +287,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Process — 4 steps */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>How It Works</Eyebrow>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processSteps.map((step, i) => (
+              <div key={step.label} className="flex flex-col gap-2">
+                <div
+                  className="text-xs uppercase tracking-widest mb-1"
+                  style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <step.icon size={20} style={{ color: "var(--bone-dim)" }} />
+                <h3
+                  className="text-base font-semibold"
+                  style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                >
+                  {step.label}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  {step.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Outcome categories — benefit copy only, no drug names */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>Treatments</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Pick the outcome you&apos;re after
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((category) => (
+              <OutcomeCard key={category.slug} category={category} icon={categoryIcons[category.slug] ?? Scale} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* The Pulse difference */}
       <section
         className="section-pad px-4 sm:px-6 lg:px-8"
@@ -240,7 +361,7 @@ export default function HomePage() {
               <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                 This is the model built by the Extreme Resilience team — operators
                 and clinicians who have been through the system and built
-                something they'd actually use.
+                something they&apos;d actually use.
               </p>
               <Link
                 href="/how-it-works"
@@ -299,28 +420,53 @@ export default function HomePage() {
           <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
             Every patient starts on Foundation — your protocol, no separate fee.
             Operator and Full Spectrum add ongoing monitoring and coaching once
-            you've decided you want it.
+            you&apos;ve decided you want it.
           </p>
           <div className="grid sm:grid-cols-3 gap-5">
-            {tiers.map((tier) => (
+            {tiers.map((tier, i) => (
               <div
                 key={tier.id}
-                className="flex flex-col gap-2 p-5 rounded-lg border"
+                className="flex flex-col gap-3 p-5 rounded-lg border"
                 style={{
                   background: "var(--surface)",
                   borderColor: tier.heroIncluded ? "var(--red)" : "var(--line)",
                   borderWidth: tier.heroIncluded ? 1.5 : 1,
                 }}
               >
+                <div
+                  className="text-xs uppercase tracking-widest"
+                  style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
                 <span
-                  className="text-sm font-bold"
+                  className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
                 >
                   {tier.name}
                 </span>
-                <span className="text-xs" style={{ color: "var(--red)", fontFamily: "var(--font-mono)" }}>
+                <span className="text-sm" style={{ color: "var(--bone-dim)" }}>
                   {tier.oneLiner}
                 </span>
+                <ul className="flex flex-col gap-1.5 my-1">
+                  {tier.included.map((item) => (
+                    <li key={item} className="text-xs leading-relaxed flex items-start gap-2" style={{ color: "var(--muted)" }}>
+                      <span aria-hidden="true">—</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-2 border-t" style={{ borderColor: "var(--line)" }}>
+                  <span
+                    className="text-xl font-extrabold"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  >
+                    {tier.price === 0 ? "$0" : `$${tier.price}`}
+                  </span>
+                  <span className="text-xs ml-1" style={{ color: "var(--muted)" }}>
+                    {tier.price === 0 ? "" : "/mo"} plus cost of medication
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -335,6 +481,93 @@ export default function HomePage() {
       </section>
 
       <PulseLine className="opacity-30" />
+
+      {/* Entry offer block */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+        <div className="max-w-2xl mx-auto text-center">
+          <Eyebrow className="justify-center">Get Started</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-6"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Start with $65 labs and a consult
+          </h2>
+          <div
+            className="flex flex-col gap-2 p-6 rounded-lg border text-left mb-6"
+            style={{ background: "var(--surface)", borderColor: "var(--line)" }}
+          >
+            <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
+              <span>Biomarker lab panel</span>
+              <span>Included</span>
+            </div>
+            <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
+              <span>Licensed provider consult</span>
+              <span>Included</span>
+            </div>
+            <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
+              <span>Personalized protocol, if prescribed</span>
+              <span>Billed separately</span>
+            </div>
+            <div
+              className="flex justify-between text-sm font-semibold pt-2 mt-2 border-t"
+              style={{ color: "var(--bone)", borderColor: "var(--line)" }}
+            >
+              <span>Entry offer</span>
+              <span>$65</span>
+            </div>
+          </div>
+          <Link
+            href="/bloodwork"
+            className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
+            style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+          >
+            Start Your Bloodwork <ArrowRight size={16} />
+          </Link>
+          <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
+            Consult from ${CONSULT_FEE} standalone — treatment billed separately if prescribed.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-4xl mx-auto">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Common questions
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
+            {faqGroups.map((group) => (
+              <div key={group.group}>
+                <h3
+                  className="text-xs uppercase tracking-widest mb-3"
+                  style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
+                >
+                  {group.group}
+                </h3>
+                <div className="flex flex-col gap-1">
+                  {group.items.map((item) => (
+                    <details key={item.q} className="group border-b py-3" style={{ borderColor: "var(--line)" }}>
+                      <summary
+                        className="text-sm font-medium cursor-pointer list-none"
+                        style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                      >
+                        {item.q}
+                      </summary>
+                      <p className="text-sm leading-relaxed mt-2" style={{ color: "var(--muted)" }}>
+                        {item.a}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Field Notes teaser */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
