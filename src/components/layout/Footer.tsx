@@ -7,7 +7,7 @@ const footerLinks = {
     { href: "/weight-loss", label: "Weight Loss" },
     { href: "/optimize", label: "Optimize" },
     { href: "/bloodwork", label: "Start with Bloodwork" },
-    { href: "/protocols", label: "All Protocols" },
+    { href: "/treatments", label: "All Treatments" },
     { href: "/membership", label: "Membership" },
   ],
   "Learn More": [
@@ -47,7 +47,7 @@ export default function Footer() {
             </Link>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               Performance medicine built for operators, by operators. Veterans,
-              first responders, founders — you've earned the tools to run at
+              first responders, founders — you&apos;ve earned the tools to run at
               full capacity.
             </p>
             <Link
@@ -116,6 +116,21 @@ export default function Footer() {
             per provider evaluation. Compounded medications are produced by
             503A-compliant pharmacies and are patient-specific; they are not
             FDA-approved. Results are not guaranteed and vary by individual.
+          </p>
+
+          {/* Clinical-relationship disclosure — draft language, not yet
+              reviewed by counsel; coordinate final wording before Phase 5 */}
+          <p
+            className="mt-4 text-xs leading-relaxed"
+            style={{ color: "var(--muted)", opacity: 0.7 }}
+          >
+            Pulse Health is a telehealth technology platform and is not itself
+            a medical practice. Medical services, evaluations, and
+            prescriptions are provided by independent, licensed healthcare
+            providers and practices affiliated with Pulse Health, exercising
+            their own independent clinical judgment. Pulse Health does not
+            practice medicine and does not guarantee a prescription will be
+            issued.
           </p>
         </div>
       </div>

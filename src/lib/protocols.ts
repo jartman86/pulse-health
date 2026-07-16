@@ -1,3 +1,12 @@
+// ARCHIVED (Hone-model redesign, Phase 4): the named protocol-bundle
+// public routes (operator-reset, recovery-repair, drive,
+// longevity-baseline, hair) are retired in favor of src/lib/compounds.ts
+// + src/lib/categories.ts and the /treatments catalog — see
+// next.config.ts for the 301s. This module is kept, not deleted: its
+// data still backs the still-live /protocols/hormone-optimization
+// waitlist page, and PROTOCOL_FAQ/CONSULT_FEE are reused by the new
+// compound pages.
+//
 // Consult fee shown alongside every protocol's "Starting at" price, per the
 // three-layer offer pattern (marketing card -> what's included -> medications
 // disclosure). Same figure across all protocols today.

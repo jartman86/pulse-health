@@ -83,11 +83,17 @@ export default function SafetyPage() {
             <h2 className="text-lg font-bold mb-3" style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}>
               TRT/HRT — Q3 2026
             </h2>
-            <p>
+            <p className="mb-3">
               Testosterone replacement therapy (TRT) and hormone replacement therapy
-              (HRT) are not available through Pulse Health as of the current date.
-              These services are anticipated to launch in Q3 2026. No TRT or HRT
+              (HRT) — including testosterone cypionate, enclomiphene, and anastrozole
+              — are not available through Pulse Health as of the current date. These
+              services are anticipated to launch in Q3 2026. No TRT or HRT
               prescriptions are issued until that time.
+            </p>
+            <p>
+              Gonadorelin, used to help maintain natural testicular function and
+              hormone signaling, is available now and is prescribed independently of
+              — and does not itself constitute — testosterone replacement therapy.
             </p>
           </section>
 

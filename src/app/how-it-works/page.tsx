@@ -40,7 +40,7 @@ const steps = [
     phase: "Protocol",
     title: "Prescription ships, protocol begins",
     body: "Your prescription ships from our 503A pharmacy within 2–3 business days. Certificates of Analysis included. Provider monitors your response monthly.",
-    cta: { label: "See all protocols", href: "/protocols" },
+    cta: { label: "See all treatments", href: "/treatments" },
     mydose: true,
   },
   {

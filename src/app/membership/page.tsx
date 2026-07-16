@@ -85,7 +85,7 @@ export default function MembershipPage() {
                 </ul>
 
                 <Link
-                  href="/protocols"
+                  href="/treatments"
                   className="text-sm font-semibold px-4 py-2.5 rounded text-center transition-all hover:brightness-110"
                   style={{
                     background: tier.heroIncluded ? "var(--red)" : "var(--surface-2)",

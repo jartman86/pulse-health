@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/weight-loss", label: "Weight Loss" },
   { href: "/optimize", label: "Optimize" },
   { href: "/bloodwork", label: "Bloodwork" },
-  { href: "/protocols", label: "Protocols" },
+  { href: "/treatments", label: "Treatments" },
   { href: "/membership", label: "Membership" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/field-notes", label: "Field Notes" },

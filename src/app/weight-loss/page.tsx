@@ -134,7 +134,7 @@ export default function WeightLossPage() {
                   Start Your Bloodwork <ArrowRight size={16} />
                 </Link>
                 <Link
-                  href="/protocols?door=weight-loss"
+                  href="/treatments/weight-loss"
                   className="inline-flex items-center justify-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:bg-black/5"
                   style={{
                     borderColor: "#2E2724",
@@ -286,7 +286,7 @@ export default function WeightLossPage() {
           </Callout>
           <p className="mt-4 text-sm">
             <Link
-              href="/protocols/operator-reset"
+              href="/treatments/weight-loss"
               className="underline underline-offset-2"
               style={{ color: "#5A5A5A" }}
             >

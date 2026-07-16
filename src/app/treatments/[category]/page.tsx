@@ -74,7 +74,7 @@ export default async function CategoryPage({ params }: Props) {
               <CompoundCard key={compound.slug} compound={compound} categorySlug={category.slug} />
             ))}
           </div>
-          <ComplianceDisclosure compounded />
+          <ComplianceDisclosure compounded fdaOnly />
         </div>
       </section>
 

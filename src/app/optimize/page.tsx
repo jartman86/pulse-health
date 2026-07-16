@@ -45,7 +45,7 @@ const protocols = [
     tagColor: "var(--state-optimal)",
     description:
       "Recover like it's still your job. A personalized protocol targeting sleep quality, inflammation, and cellular recovery — for operators pushing hard on recovery.",
-    href: "/protocols/recovery-repair",
+    href: "/treatments/recovery-performance",
     available: true,
   },
   {
@@ -55,7 +55,7 @@ const protocols = [
     tagColor: "var(--red)",
     description:
       "Know where you stand. Build from there. Comprehensive baseline labs plus a protocol built to extend your operational years, not just your lifespan.",
-    href: "/protocols/longevity-baseline",
+    href: "/treatments/recovery-performance",
     available: true,
   },
   {
@@ -65,7 +65,7 @@ const protocols = [
     tagColor: "var(--red-bright)",
     description:
       "Get your edge back. Energy, libido, and confidence — addressed clinically, personalized to your labs and goals.",
-    href: "/protocols/drive",
+    href: "/treatments/sexual-health",
     available: true,
   },
   {
@@ -141,11 +141,11 @@ export default function OptimizePage() {
                 Start Your Bloodwork <ArrowRight size={16} />
               </Link>
               <Link
-                href="/protocols"
+                href="/treatments"
                 className="inline-flex items-center justify-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:border-[var(--red-bright)]"
                 style={{ borderColor: "#5A3030", color: "#E8B6AE" }}
               >
-                See All Protocols
+                See All Treatments
               </Link>
             </div>
           </div>

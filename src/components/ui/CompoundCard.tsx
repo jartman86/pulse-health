@@ -1,6 +1,7 @@
 import Link from "next/link";
 import VialPlaceholder from "@/components/ui/VialPlaceholder";
 import type { Compound } from "@/lib/compounds";
+import { CONSULT_DISCLOSURE } from "@/lib/compounds";
 import { ArrowRight } from "lucide-react";
 
 interface CompoundCardProps {
@@ -66,6 +67,12 @@ export default function CompoundCard({ compound, categorySlug }: CompoundCardPro
           </Link>
         )}
       </div>
+
+      {!comingSoon && (
+        <p className="text-[11px] leading-relaxed" style={{ color: "var(--muted)" }}>
+          {CONSULT_DISCLOSURE}
+        </p>
+      )}
     </div>
   );
 }
