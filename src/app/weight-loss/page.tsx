@@ -10,51 +10,13 @@ import { ArrowRight, Check, Clock, Package, UserCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Medical Weight Loss — GLP-1, Provider Monitoring & Labs",
   description:
-    "Supervised GLP-1 weight loss with labs and ongoing provider monitoring. Wegovy, Ozempic, Zepbound, oral options. Operator-grade, no shame.",
+    "Supervised GLP-1 weight loss with labs and ongoing provider monitoring. Injectable, oral, and sublingual options. Operator-grade, no shame.",
 };
 
-const medications = [
-  {
-    name: "Semaglutide (GLP-1)",
-    brands: "Wegovy · Ozempic",
-    description:
-      "Weekly injection. The most clinically studied GLP-1 agent; 15–20% average body weight reduction in trials.",
-    tag: "Most Common",
-    tagColor: "var(--state-optimal)",
-  },
-  {
-    name: "Tirzepatide (GLP-1/GIP)",
-    brands: "Zepbound · Mounjaro",
-    description:
-      "Dual agonist — additional GIP mechanism may support greater weight reduction and metabolic impact.",
-    tag: "Enhanced",
-    tagColor: "var(--red)",
-  },
-  {
-    name: "Oral Semaglutide",
-    brands: "Wegovy pill · Foundayo",
-    description:
-      "Daily oral option for those who prefer not to inject. Emerging data on efficacy vs. injectable.",
-    tag: "Oral Option",
-    tagColor: "#5A5A5A",
-  },
-  {
-    name: "Sublingual Formulations",
-    brands: "503A pharmacy-specific",
-    description:
-      "Sublingual sema/tirz where injectable stock is limited. Provider-reviewed and patient-specific.",
-    tag: "Alternative",
-    tagColor: "#5A5A5A",
-  },
-  {
-    name: "Metformin",
-    brands: "Metabolic support",
-    description:
-      "Insulin sensitizer often used adjunct to GLP-1 therapy. May support metabolic health beyond weight.",
-    tag: "Adjunct",
-    tagColor: "#5A5A5A",
-  },
-];
+// Compound-specific names, brands, and efficacy stats intentionally do
+// not live on this front-door page (Hone-model Layer 1: outcomes only,
+// no drug names). That content lives on /treatments/weight-loss
+// (Layer 2), with cited benefits and full disclosures.
 
 const whatIsIncluded = [
   { icon: Package, text: "GLP-1 Readiness Panel (labs)" },
@@ -223,76 +185,41 @@ export default function WeightLossPage() {
         </div>
       </section>
 
-      {/* Medications */}
+      {/* Treatment options */}
       <section
         className="section-pad px-4 sm:px-6 lg:px-8"
         style={{ background: "#F4EFE7" }}
       >
         <div className="max-w-7xl mx-auto">
-          <Eyebrow>Available Medications</Eyebrow>
+          <Eyebrow>Treatment</Eyebrow>
           <h2
             className="text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
           >
             The right tool for your biology
           </h2>
-          <p className="text-base mb-10" style={{ color: "#5A5A5A", maxWidth: "42rem" }}>
+          <p className="text-base mb-8" style={{ color: "#5A5A5A", maxWidth: "42rem" }}>
             Your provider evaluates your labs, history, and goals to determine the
-            best-fit agent and starting dose. We surface all options — brand-name,
-            oral, and compounded — so you make an informed decision.
+            best-fit medication, form, and starting dose — injectable, oral, or
+            sublingual, brand-name or compounded. Nothing is chosen at checkout;
+            it&apos;s decided in your consult.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {medications.map((med) => (
-              <div
-                key={med.name}
-                className="flex flex-col gap-3 p-6 rounded-lg border"
-                style={{ background: "#EDE7DD", borderColor: "#B8AFA4" }}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <h3
-                    className="text-base font-bold"
-                    style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
-                  >
-                    {med.name}
-                  </h3>
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full shrink-0"
-                    style={{
-                      background: "rgba(0,0,0,0.05)",
-                      color: med.tagColor,
-                      fontFamily: "var(--font-mono)",
-                    }}
-                  >
-                    {med.tag}
-                  </span>
-                </div>
-                <div className="text-xs" style={{ fontFamily: "var(--font-mono)", color: "#5A5A5A" }}>
-                  {med.brands}
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: "#5A5A5A" }}>
-                  {med.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <Link
+            href="/treatments/weight-loss"
+            className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded transition-all hover:brightness-95"
+            style={{ background: "#1A1614", color: "#F4EFE7", fontFamily: "var(--font-display)" }}
+          >
+            See Available Treatments <ArrowRight size={14} />
+          </Link>
 
           <Callout variant="risk" className="mt-8" light>
-            Compounded GLP-1 medications (semaglutide, tirzepatide) are produced
-            by 503A-compliant pharmacies and are patient-specific. They are{" "}
-            <strong>not FDA-approved</strong>. Brand-name options (Wegovy, Zepbound,
-            Mounjaro) are FDA-approved where accessible. Your provider discusses
-            all options.
+            Compounded weight-loss medications are produced by 503A-compliant
+            pharmacies and are patient-specific. They are{" "}
+            <strong>not FDA-approved</strong>. FDA-approved brand-name options are
+            available where clinically appropriate and accessible. Your provider
+            discusses all options with you directly.
           </Callout>
-          <p className="mt-4 text-sm">
-            <Link
-              href="/treatments/weight-loss"
-              className="underline underline-offset-2"
-              style={{ color: "#5A5A5A" }}
-            >
-              See full prescribing details and safety information
-            </Link>
-          </p>
         </div>
       </section>
 

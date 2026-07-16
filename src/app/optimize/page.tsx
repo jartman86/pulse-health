@@ -51,7 +51,7 @@ const protocols = [
   {
     icon: Zap,
     name: "Longevity Baseline",
-    tag: "NAD+ · Labs",
+    tag: "Cellular Health · Labs",
     tagColor: "var(--red)",
     description:
       "Know where you stand. Build from there. Comprehensive baseline labs plus a protocol built to extend your operational years, not just your lifespan.",
