@@ -5,6 +5,10 @@ import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Card from "@/components/ui/Card";
 import OutcomeCard from "@/components/ui/OutcomeCard";
+import DecisionWidget from "@/components/ui/DecisionWidget";
+import ProviderSection from "@/components/ui/ProviderSection";
+import TestimonialBand from "@/components/ui/TestimonialBand";
+import BiomarkerTicker from "@/components/ui/BiomarkerTicker";
 import { tiers } from "@/lib/tiers";
 import { categories } from "@/lib/categories";
 import { CONSULT_FEE } from "@/lib/compounds";
@@ -24,6 +28,33 @@ const categoryIcons: Record<string, typeof Scale> = {
   "sexual-health": Flame,
   "hair-restoration": Sparkles,
 };
+
+const decisionOptions = [
+  {
+    label: "Energy",
+    body: "Mental sharpness and daily output that doesn't crash by 2pm.",
+    href: "/treatments/cognition-energy",
+    icon: Brain,
+  },
+  {
+    label: "Weight",
+    body: "Sustainable weight loss with provider monitoring — no crash diet.",
+    href: "/treatments/weight-loss",
+    icon: Scale,
+  },
+  {
+    label: "Recovery",
+    body: "Sleep, inflammation, and tissue repair that keep pace with training.",
+    href: "/treatments/recovery-performance",
+    icon: HeartPulse,
+  },
+  {
+    label: "Drive",
+    body: "Hormonal baseline rebuilt — energy, drive, and recovery addressed at the source.",
+    href: "/treatments/hormone-optimization",
+    icon: Activity,
+  },
+];
 
 const processSteps = [
   { icon: FlaskConical, label: "Test", body: "SiPhox at-home kit or a Quest venous draw — your call." },
@@ -288,7 +319,7 @@ export default function HomePage() {
       </section>
 
       {/* Process — 4 steps */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+      <section className="section-pad px-4 sm:px-6 lg:px-8 surface-light">
         <div className="max-w-7xl mx-auto">
           <Eyebrow>How It Works</Eyebrow>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -300,14 +331,14 @@ export default function HomePage() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <step.icon size={20} style={{ color: "var(--bone-dim)" }} />
+                <step.icon size={20} style={{ color: "#5A5A5A" }} />
                 <h3
                   className="text-base font-semibold"
-                  style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
                 >
                   {step.label}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "#5A5A5A" }}>
                   {step.body}
                 </p>
               </div>
@@ -331,6 +362,20 @@ export default function HomePage() {
               <OutcomeCard key={category.slug} category={category} icon={categoryIcons[category.slug] ?? Scale} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Decision widget — routes straight to the relevant category */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>Not Sure Where to Start</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-8"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            What&apos;s costing you right now?
+          </h2>
+          <DecisionWidget options={decisionOptions} />
         </div>
       </section>
 
@@ -397,6 +442,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Biomarker ticker — the labs-first thesis, visualized. Real marker
+          names sourced from SIPHOX_PANELS, not an inflated count. */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>What We Actually Measure</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Every protocol starts here
+          </h2>
+          <BiomarkerTicker />
+        </div>
+      </section>
+
       {/* Trust badges */}
       <section
         className="py-12 px-4 sm:px-6 lg:px-8 border-y"
@@ -407,17 +467,47 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Tier teaser — add coaching after your consult, not a pre-purchase decision */}
+      {/* Clinical oversight — generic role framing, no fabricated names/photos
+          per asset manifest until Jim supplies real provider bios */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>Clinical Oversight</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Every protocol, reviewed by a licensed provider
+          </h2>
+          <ProviderSection />
+        </div>
+      </section>
+
+      {/* Testimonial band — PLACEHOLDER copy, see TestimonialBand.tsx.
+          Do not ship live without real, permissioned quotes. */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>What Operators Say</Eyebrow>
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Built for people who don&apos;t have time for guesswork
+          </h2>
+          <TestimonialBand />
+        </div>
+      </section>
+
+      {/* Tier teaser — add coaching after your consult, not a pre-purchase decision */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8 surface-light">
         <div className="max-w-7xl mx-auto">
           <Eyebrow>Membership</Eyebrow>
           <h2
             className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+            style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
           >
             Add coaching after your consult
           </h2>
-          <p className="text-base mb-10 max-w-2xl" style={{ color: "var(--muted)" }}>
+          <p className="text-base mb-10 max-w-2xl" style={{ color: "#5A5A5A" }}>
             Every patient starts on Foundation — your protocol, no separate fee.
             Operator and Full Spectrum add ongoing monitoring and coaching once
             you&apos;ve decided you want it.
@@ -428,8 +518,8 @@ export default function HomePage() {
                 key={tier.id}
                 className="flex flex-col gap-3 p-5 rounded-lg border"
                 style={{
-                  background: "var(--surface)",
-                  borderColor: tier.heroIncluded ? "var(--red)" : "var(--line)",
+                  background: "#FFFFFF",
+                  borderColor: tier.heroIncluded ? "var(--red)" : "#B8AFA4",
                   borderWidth: tier.heroIncluded ? 1.5 : 1,
                 }}
               >
@@ -441,29 +531,29 @@ export default function HomePage() {
                 </div>
                 <span
                   className="text-lg font-bold"
-                  style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
                 >
                   {tier.name}
                 </span>
-                <span className="text-sm" style={{ color: "var(--bone-dim)" }}>
+                <span className="text-sm" style={{ color: "#5A5A5A" }}>
                   {tier.oneLiner}
                 </span>
                 <ul className="flex flex-col gap-1.5 my-1">
                   {tier.included.map((item) => (
-                    <li key={item} className="text-xs leading-relaxed flex items-start gap-2" style={{ color: "var(--muted)" }}>
+                    <li key={item} className="text-xs leading-relaxed flex items-start gap-2" style={{ color: "#5A5A5A" }}>
                       <span aria-hidden="true">—</span>
                       {item}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto pt-2 border-t" style={{ borderColor: "var(--line)" }}>
+                <div className="mt-auto pt-2 border-t" style={{ borderColor: "#B8AFA4" }}>
                   <span
                     className="text-xl font-extrabold"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                    style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
                   >
                     {tier.price === 0 ? "$0" : `$${tier.price}`}
                   </span>
-                  <span className="text-xs ml-1" style={{ color: "var(--muted)" }}>
+                  <span className="text-xs ml-1" style={{ color: "#5A5A5A" }}>
                     {tier.price === 0 ? "" : "/mo"} plus cost of medication
                   </span>
                 </div>
@@ -473,17 +563,17 @@ export default function HomePage() {
           <Link
             href="/membership"
             className="inline-flex items-center gap-1 mt-6 text-sm font-medium transition-colors hover:text-[var(--red)]"
-            style={{ color: "var(--bone-dim)" }}
+            style={{ color: "#5A5A5A" }}
           >
             Compare membership tiers <ChevronRight size={14} />
           </Link>
         </div>
       </section>
 
-      <PulseLine className="opacity-30" />
+      <PulseLine className="opacity-30" animate />
 
       {/* Entry offer block */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+      <section className="section-pad-tight px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <Eyebrow className="justify-center">Get Started</Eyebrow>
           <h2
@@ -570,7 +660,7 @@ export default function HomePage() {
       </section>
 
       {/* Field Notes teaser */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+      <section className="section-pad-tight px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -627,11 +717,11 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section
-        className="section-pad px-4 sm:px-6 lg:px-8 text-center"
+        className="section-pad-tight px-4 sm:px-6 lg:px-8 text-center"
         style={{ background: "var(--ink-2)" }}
       >
         <div className="max-w-2xl mx-auto">
-          <PulseLine height={40} className="mb-10 opacity-60" />
+          <PulseLine height={40} className="mb-10 opacity-60" animate />
           <Eyebrow className="justify-center">Ready to move</Eyebrow>
           <h2
             className="text-4xl lg:text-5xl font-extrabold mb-6"

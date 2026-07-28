@@ -142,6 +142,20 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse-fade-in 0.6s ease forwards;
 }
 
+/* ─── Biomarker ticker ───────────────────────────────────────────────── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker-scroll 32s linear infinite;
+}
+
+.animate-ticker-reverse {
+  animation: ticker-scroll 32s linear infinite reverse;
+}
+
 /* ─── Light surface variant (Weight Loss door) ───────────────────────── */
 .surface-light {
   background-color: #F4EFE7;
@@ -158,5 +172,17 @@ h1, h2, h3, h4, h5, h6 {
   .section-pad {
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
+  }
+}
+
+.section-pad-tight {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-pad-tight {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 }

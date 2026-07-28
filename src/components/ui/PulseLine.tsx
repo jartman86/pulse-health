@@ -79,10 +79,29 @@ export default function PulseLine({
     if (mq.matches) return;
 
     const path = pathRef.current;
-    const length = path.getTotalLength();
-    path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(length);
-    path.classList.add("animate-pulse-draw");
+
+    const draw = () => {
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = String(length);
+      path.style.strokeDashoffset = String(length);
+      path.classList.add("animate-pulse-draw");
+    };
+
+    // Draw immediately if already in view (e.g. the hero), otherwise wait
+    // until it scrolls into view — makes the motif read as a section-break
+    // beat rather than firing off-screen.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          draw();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(path.closest("svg") ?? path);
+
+    return () => observer.disconnect();
   }, [animate]);
 
   return (
