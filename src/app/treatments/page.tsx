@@ -4,13 +4,13 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import OutcomeCard from "@/components/ui/OutcomeCard";
 import { categories } from "@/lib/categories";
-import { Scale, Activity, HeartPulse, Brain, Flame, Sparkles } from "lucide-react";
+import { Scale, Activity, HeartPulse, Brain, Flame } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Treatments — Pulse Health",
+  title: "Treatments",
   description:
-    "Explore Pulse Health's clinical treatment categories: weight loss, hormone optimization, recovery & performance, cognition & energy, sexual health, and hair restoration.",
+    "Explore Pulse Health's clinical treatment categories: weight loss, hormone optimization, recovery & performance, cognition & energy, and sexual health.",
 };
 
 const categoryIcons: Record<string, typeof Scale> = {
@@ -19,7 +19,6 @@ const categoryIcons: Record<string, typeof Scale> = {
   "recovery-performance": HeartPulse,
   "cognition-energy": Brain,
   "sexual-health": Flame,
-  "hair-restoration": Sparkles,
 };
 
 export default function TreatmentsPage() {
@@ -61,14 +60,14 @@ export default function TreatmentsPage() {
             className="text-3xl lg:text-4xl font-bold mb-6"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            Start with your labs — the data will tell you.
+            Order your labs — the data will tell you.
           </h2>
           <Link
             href="/bloodwork"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
             style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Order Your Labs <ArrowRight size={16} />
           </Link>
         </div>
       </section>

@@ -47,11 +47,11 @@ export default function TermsPage() {
             <p>
               Lab panel purchases are non-refundable once a kit has been shipped.
               Protocol subscription fees are non-refundable for the current
-              billing period. Contact support@pulsehealth.com for billing issues.
+              billing period. Contact support@pulse.health.clinic for billing issues.
             </p>
           </section>
           <p className="text-xs" style={{ color: "var(--muted)" }}>
-            Full terms available on request. Questions: legal@pulsehealth.com
+            Full terms available on request. Questions: legal@pulse.health.clinic
           </p>
         </div>
       </div>

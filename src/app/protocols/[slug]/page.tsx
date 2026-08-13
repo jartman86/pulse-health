@@ -96,7 +96,7 @@ export default async function ProtocolPage({ params }: Props) {
             ) : (
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href={`/bloodwork?protocol=${protocol.slug}`}
+                  href="/treatments"
                   className="inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
                   style={{
                     background: "var(--red)",
@@ -104,7 +104,7 @@ export default async function ProtocolPage({ params }: Props) {
                     fontFamily: "var(--font-display)",
                   }}
                 >
-                  Start Your Bloodwork <ArrowRight size={16} />
+                  Find Your Protocol <ArrowRight size={16} />
                 </Link>
                 <Link
                   href="/protocols"

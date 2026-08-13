@@ -5,6 +5,7 @@ import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Card from "@/components/ui/Card";
 import Callout from "@/components/ui/Callout";
+import { CONSULT_FEE } from "@/lib/compounds";
 import { ArrowRight, Check, Clock, Package, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -30,13 +31,13 @@ const whatIsIncluded = [
 const steps = [
   {
     n: "01",
-    heading: "Order your GLP-1 Readiness Panel",
-    body: "At-home testing or a local lab draw. Baseline metabolic picture — HbA1c, lipids, glucose, thyroid.",
+    heading: "Choose your protocol",
+    body: "Browse GLP-1 options — injectable, oral, or sublingual — and start your consult. No quiz, no gate.",
   },
   {
     n: "02",
-    heading: "Results + provider review",
-    body: "Your Pulse provider reviews your panel and recommends a starting protocol. You review together in a video or async consult.",
+    heading: "Consult + labs ordered",
+    body: "Your Pulse provider reviews your goals and history, then orders your GLP-1 Readiness Panel — billed at cost, $0 Pulse markup.",
   },
   {
     n: "03",
@@ -85,7 +86,7 @@ export default function WeightLossPage() {
               </Callout>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/bloodwork?door=weight-loss"
+                  href="/treatments/weight-loss"
                   className="inline-flex items-center justify-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
                   style={{
                     background: "var(--red)",
@@ -93,17 +94,17 @@ export default function WeightLossPage() {
                     fontFamily: "var(--font-display)",
                   }}
                 >
-                  Start Your Bloodwork <ArrowRight size={16} />
+                  Find Your Protocol <ArrowRight size={16} />
                 </Link>
                 <Link
-                  href="/treatments/weight-loss"
+                  href="/bloodwork?door=weight-loss"
                   className="inline-flex items-center justify-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:bg-black/5"
                   style={{
                     borderColor: "#2E2724",
                     color: "#1A1614",
                   }}
                 >
-                  See Programs
+                  Order Your Labs
                 </Link>
               </div>
             </div>
@@ -155,7 +156,7 @@ export default function WeightLossPage() {
             className="text-3xl lg:text-4xl font-bold mb-12"
             style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
           >
-            Four steps from labs to results
+            Four steps to your protocol
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step) => (
@@ -245,14 +246,15 @@ export default function WeightLossPage() {
             className="text-4xl font-extrabold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
           >
-            The first step is a blood draw, not a decision.
+            The first step is a consult, not a guess.
           </h2>
           <p className="text-base mb-8" style={{ color: "#5A5A5A" }}>
-            Order your GLP-1 Readiness Panel. Results in 5–7 days with
-            provider interpretation included. No quiz, no judgment.
+            Choose your GLP-1 option and start your consult. Your provider
+            orders the labs your protocol needs — billed at cost, no markup.
+            No quiz, no judgment.
           </p>
           <Link
-            href="/bloodwork?door=weight-loss"
+            href="/treatments/weight-loss"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110"
             style={{
               background: "var(--red)",
@@ -260,10 +262,10 @@ export default function WeightLossPage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
           <p className="mt-3 text-sm" style={{ color: "#5A5A5A" }}>
-            GLP-1 Readiness Panel — $99 · Ships in 1–2 business days
+            Consult from ${CONSULT_FEE} · Treatment billed separately if prescribed
           </p>
         </div>
       </section>

@@ -36,8 +36,8 @@ export default function PrivacyPage() {
             </h2>
             <p>
               We collect information you provide (name, email, address, health
-              history, lab results), information from lab testing partners
-              (SiPhox, Quest), and standard website usage data (IP address,
+              history, lab results), information from our lab testing partner
+              (Altro), and standard website usage data (IP address,
               browser type, pages visited). We do not sell patient data.
             </p>
           </section>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             </p>
           </section>
           <p className="text-xs" style={{ color: "var(--muted)" }}>
-            For questions about your privacy rights, contact privacy@pulsehealth.com.
+            For questions about your privacy rights, contact privacy@pulse.health.clinic.
             This is a summary — full HIPAA Notice of Privacy Practices available
             on request.
           </p>

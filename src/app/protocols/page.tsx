@@ -9,7 +9,7 @@ import { ArrowRight, Clock } from "lucide-react";
 export const metadata: Metadata = {
   title: "Protocols — Outcome Bundles",
   description:
-    "Pulse Health outcome bundles: GLP-1 weight loss, peptides, NAD+, sexual health, hair, and hormone optimization. Transparent pricing, labs-gated protocols.",
+    "Pulse Health outcome bundles: GLP-1 weight loss, peptides, NAD+, sexual health, and hormone optimization. Transparent pricing, labs-gated protocols.",
 };
 
 const doorLabels = {

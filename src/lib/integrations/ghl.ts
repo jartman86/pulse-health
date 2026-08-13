@@ -81,7 +81,7 @@ export const events = {
 };
 
 // CONFIG[ghl_tier_plan_ids] — membership tiers are billed via GHL, separate
-// from the MyDose clinical charge. Real plan IDs are not yet configured
+// from the Altro clinical charge. Real plan IDs are not yet configured
 // (see src/lib/tiers.ts `ghlPlanId`); this stub logs in dev and no-ops
 // safely if GHL isn't configured, matching the pattern above.
 export async function subscribeTier(params: {

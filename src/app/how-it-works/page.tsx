@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import { ArrowRight } from "lucide-react";
@@ -7,33 +8,33 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "How It Works — The 5-Step Journey",
   description:
-    "Labs → Results → Consult → Protocol → Monitoring. See exactly how Pulse Health works from first bloodwork to ongoing follow-up.",
+    "Treatment → Consult → Labs → Protocol → Monitoring. See exactly how Pulse Health works from choosing your protocol to ongoing follow-up.",
 };
 
 const steps = [
   {
     n: "01",
-    phase: "Bloodwork",
-    title: "Order your panel",
-    body: "Choose your at-home panel or local lab draw based on your goal. No consult required to start. Kit ships in 1–2 business days.",
-    cta: { label: "Choose a panel", href: "/bloodwork" },
-    mydose: false,
+    phase: "Treatment",
+    title: "Choose your treatment",
+    body: "Browse outcomes — weight loss, hormone optimization, recovery, and more — and pick what fits your goals. No quiz, no gate.",
+    cta: { label: "Browse treatments", href: "/treatments" },
+    appBadge: false,
   },
   {
     n: "02",
-    phase: "Results",
-    title: "Results + plain-language interpretation",
-    body: "5–10 days later, results appear in your Pulse dashboard. Every value interpreted against your personal reference ranges. Your provider leaves a recommendation.",
+    phase: "Consult",
+    title: "Provider consult — sync or async",
+    body: "A licensed Pulse provider reviews your goals and history. Video consult or async messaging. They determine whether a prescription and labs are appropriate.",
     cta: null,
-    mydose: true,
+    appBadge: true,
   },
   {
     n: "03",
-    phase: "Consult",
-    title: "Provider consult — sync or async",
-    body: "Review results with your licensed Pulse provider. Video consult or async messaging. Discuss your protocol options, ask questions, make the decision together.",
-    cta: null,
-    mydose: true,
+    phase: "Labs",
+    title: "Labs, ordered by your provider",
+    body: "Your provider orders the panel your protocol requires — billed at cost, $0 Pulse markup. Results land in your Pulse dashboard in 5–10 days with plain-language interpretation.",
+    cta: { label: "Order ahead", href: "/bloodwork" },
+    appBadge: true,
   },
   {
     n: "04",
@@ -41,7 +42,7 @@ const steps = [
     title: "Prescription ships, protocol begins",
     body: "Your prescription ships from our 503A pharmacy within 2–3 business days. Certificates of Analysis included. Provider monitors your response monthly.",
     cta: { label: "See all treatments", href: "/treatments" },
-    mydose: true,
+    appBadge: true,
   },
   {
     n: "05",
@@ -49,7 +50,7 @@ const steps = [
     title: "Quarterly re-test — closing the loop",
     body: "Your provider tracks your response over time and adjusts your protocol as your labs change. Quarterly re-testing keeps the plan calibrated to your biology, not a guess.",
     cta: { label: "Our mission", href: "/mission" },
-    mydose: false,
+    appBadge: false,
   },
 ];
 
@@ -63,13 +64,13 @@ export default function HowItWorksPage() {
             className="text-5xl font-extrabold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            Labs → Results → Consult
+            Treatment → Consult → Labs
             <br />
             <span style={{ color: "var(--red)" }}>→ Protocol → Monitoring</span>
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "var(--bone-dim)" }}>
-            Five steps from bloodwork to a running protocol with ongoing
-            monitoring. Clear, no hidden steps, no quiz gates.
+            Five steps from choosing your treatment to a running protocol
+            with ongoing monitoring. Clear, no hidden steps, no quiz gates.
           </p>
         </div>
       </section>
@@ -118,7 +119,7 @@ export default function HowItWorksPage() {
                   <p className="text-base leading-relaxed mb-3" style={{ color: "var(--bone-dim)" }}>
                     {step.body}
                   </p>
-                  {step.mydose && (
+                  {step.appBadge && (
                     <span
                       className="text-xs px-2 py-0.5 rounded inline-block mb-3"
                       style={{
@@ -129,6 +130,20 @@ export default function HowItWorksPage() {
                     >
                       Powered by Pulse patient app
                     </span>
+                  )}
+                  {step.phase === "Labs" && (
+                    <div
+                      className="relative w-full max-w-xs aspect-[9/16] rounded-lg overflow-hidden border mb-3"
+                      style={{ borderColor: "var(--line)" }}
+                    >
+                      <Image
+                        src="/images/app/a3-dashboard-device-frame.png"
+                        alt="Pulse patient dashboard preview on a mobile device"
+                        fill
+                        sizes="320px"
+                        style={{ objectFit: "contain" }}
+                      />
+                    </div>
                   )}
                   {step.cta && (
                     <Link
@@ -158,14 +173,15 @@ export default function HowItWorksPage() {
             Start at Step 1.
           </h2>
           <p className="text-base mb-8" style={{ color: "var(--bone-dim)" }}>
-            Everything after follows from the data. Order your panel.
+            Everything starts with choosing your treatment. Your provider
+            takes it from there.
           </p>
           <Link
-            href="/bloodwork"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded hover:brightness-110"
             style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
         </div>
       </section>

@@ -154,6 +154,68 @@ export default function MissionPage() {
         </div>
       </section>
 
+      <PulseLine className="opacity-40" />
+
+      {/* Section 2.5 — Who We Serve */}
+      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
+        <div className="max-w-7xl mx-auto">
+          <Eyebrow>Who We Serve</Eyebrow>
+          <h2
+            className="text-3xl sm:text-4xl font-bold mb-10"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Built for people who don&apos;t get to phone it in.
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              {
+                image: "/images/audience/a5-audience-gym-operator.png",
+                alt: "An operator training in the gym",
+                title: "Operators",
+                body: "Physician-supervised care built around demanding training and work schedules — lab-based protocols, telehealth access, no clinic visits required.",
+              },
+              {
+                image: "/images/audience/a6-audience-first-responder.png",
+                alt: "A first responder at the start of a shift",
+                title: "First Responders",
+                body: "Care that works around shift rotations — lab-based baselines, physician oversight, and follow-up entirely by telehealth.",
+              },
+              {
+                image: "/images/audience/a7-audience-veteran-outdoors.png",
+                alt: "A veteran outdoors",
+                title: "Veterans",
+                body: "Physician-supervised, lab-based care that treats the root cause — accessible from anywhere, entirely through telehealth.",
+              },
+            ].map((segment) => (
+              <div key={segment.title} className="flex flex-col gap-4 rounded-lg overflow-hidden border" style={{ borderColor: "var(--line)", background: "var(--surface)" }}>
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src={segment.image}
+                    alt={segment.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="px-5 pb-5">
+                  <h3
+                    className="text-lg font-bold mb-2"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  >
+                    {segment.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {segment.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <PulseLine className="opacity-40" />
+
       {/* Section 3 — Mission statement */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-3xl mx-auto text-center">
@@ -269,11 +331,11 @@ export default function MissionPage() {
             build the protocol that fixes it.
           </p>
           <Link
-            href="/bloodwork"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded hover:brightness-110"
             style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
         </div>
       </section>

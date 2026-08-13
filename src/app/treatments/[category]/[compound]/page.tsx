@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PulseLine from "@/components/ui/PulseLine";
 import Callout from "@/components/ui/Callout";
@@ -8,7 +9,7 @@ import VialPlaceholder from "@/components/ui/VialPlaceholder";
 import CompoundCard from "@/components/ui/CompoundCard";
 import ComplianceDisclosure from "@/components/ui/ComplianceDisclosure";
 import { getCategory } from "@/lib/categories";
-import { compounds, getCompound, CONSULT_FEE } from "@/lib/compounds";
+import { compounds, getCompound, CONSULT_FEE, RESTRICTED_DISCLOSURE } from "@/lib/compounds";
 import { tiers } from "@/lib/tiers";
 import { PROTOCOL_FAQ } from "@/lib/protocols";
 import { ArrowRight, ChevronRight, ExternalLink } from "lucide-react";
@@ -25,9 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { compound: slug } = await params;
   const compound = getCompound(slug);
   if (!compound) return {};
+  // Restricted-tier compounds are excluded from search indexing per the
+  // compliance guardrails in src/lib/compounds.ts.
   return {
-    title: `${compound.name} — Pulse Health`,
+    title: compound.name,
     description: compound.description,
+    ...(compound.restricted
+      ? { robots: { index: false, follow: false } }
+      : {}),
   };
 }
 
@@ -38,8 +44,29 @@ export default async function CompoundPage({ params }: Props) {
   if (!compound || !category || compound.category !== categorySlug) notFound();
 
   const comingSoon = compound.status === "coming-soon";
+  const restricted = compound.restricted === true;
   const related = compound.relatedCompounds
     .map((slug) => compounds.find((c) => c.slug === slug))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+  // Every CTA routes to the patient's Altro flow, where the provider
+  // consult happens and required labs are ordered at cost. Multi-form
+  // compounds get one CTA per form. Restricted-tier compounds use
+  // consult-gated labels — never "Get Started" / price-forward copy.
+  const multiForm = compound.forms.length > 1;
+  const ctaLabel = (form: string) => {
+    if (restricted) {
+      return multiForm ? `Request Evaluation — ${form}` : "Request a Clinical Evaluation";
+    }
+    return multiForm ? `Start ${form} Consultation` : "Start Your Consultation";
+  };
+  const ctas = compound.forms
+    .map((form) => {
+      const bookingUrl = compound.bookingLinks?.[form];
+      return bookingUrl
+        ? { key: form, href: bookingUrl, external: true, label: ctaLabel(form) }
+        : null;
+    })
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
@@ -74,6 +101,13 @@ export default async function CompoundPage({ params }: Props) {
                   style={{ fontFamily: "var(--font-mono)", color: "var(--muted)" }}
                 >
                   Coming Soon{category.availableDate ? ` — ${category.availableDate}` : ""}
+                </div>
+              ) : restricted ? (
+                <div
+                  className="text-sm uppercase tracking-wide mb-4"
+                  style={{ fontFamily: "var(--font-mono)", color: "var(--muted)" }}
+                >
+                  Available only after clinical evaluation
                 </div>
               ) : (
                 <div className="text-xl mb-4" style={{ color: "var(--red)", fontFamily: "var(--font-mono)" }}>
@@ -120,14 +154,41 @@ export default async function CompoundPage({ params }: Props) {
                 </Link>
               ) : (
                 <>
-                  <Link
-                    href={`/bloodwork?compound=${compound.slug}`}
-                    className="inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
-                    style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
-                  >
-                    Start Your Bloodwork <ArrowRight size={16} />
-                  </Link>
-                  <div className="mt-4 max-w-md">
+                  <div className="flex flex-wrap gap-3">
+                    {ctas.map((cta) =>
+                      cta.external ? (
+                        <a
+                          key={cta.key}
+                          href={cta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
+                          style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+                        >
+                          {cta.label} <ExternalLink size={16} />
+                        </a>
+                      ) : (
+                        <Link
+                          key={cta.key}
+                          href={cta.href}
+                          className="inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
+                          style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+                        >
+                          {cta.label} <ArrowRight size={16} />
+                        </Link>
+                      )
+                    )}
+                  </div>
+                  <div className="mt-6 max-w-md">
+                    <div className="relative w-32 aspect-square rounded overflow-hidden border mb-3" style={{ borderColor: "var(--line)" }}>
+                      <Image
+                        src="/images/product/a2-vial-syringe-still.png"
+                        alt="Prescription vial and syringe"
+                        fill
+                        sizes="128px"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
                     <ComplianceDisclosure />
                   </div>
                 </>
@@ -258,23 +319,27 @@ export default async function CompoundPage({ params }: Props) {
                 className="text-3xl font-bold mb-6"
                 style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
               >
-                Labs, consult, and a plan — from ${CONSULT_FEE}
+                {restricted
+                  ? `Start with a consult — $${CONSULT_FEE}`
+                  : `Consult, labs, and a plan — from $${CONSULT_FEE}`}
               </h2>
               <div
                 className="flex flex-col gap-2 p-6 rounded-lg border text-left mb-6"
                 style={{ background: "var(--surface)", borderColor: "var(--line)" }}
               >
                 <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-                  <span>Lab panel</span>
-                  <span>Included</span>
+                  <span>Licensed provider consult</span>
+                  <span>${CONSULT_FEE}</span>
                 </div>
                 <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-                  <span>Licensed provider consult</span>
-                  <span>Included</span>
+                  <span>Required lab panel, ordered by your provider</span>
+                  <span>At cost — $0 Pulse fee</span>
                 </div>
                 <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
                   <span>{compound.name}, if prescribed</span>
-                  <span>From ${compound.fromPrice}/mo</span>
+                  <span>
+                    {restricted ? "Priced at consult" : `From $${compound.fromPrice}/mo`}
+                  </span>
                 </div>
                 <div
                   className="flex justify-between text-sm font-semibold pt-2 mt-2 border-t"
@@ -284,13 +349,36 @@ export default async function CompoundPage({ params }: Props) {
                   <span>${CONSULT_FEE}</span>
                 </div>
               </div>
-              <Link
-                href={`/bloodwork?compound=${compound.slug}`}
-                className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
-                style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
-              >
-                Start Your Bloodwork <ArrowRight size={16} />
-              </Link>
+              {restricted && (
+                <p className="text-xs leading-relaxed mb-6 text-left" style={{ color: "var(--muted)" }}>
+                  {RESTRICTED_DISCLOSURE}
+                </p>
+              )}
+              <div className="flex flex-wrap justify-center gap-3">
+                {ctas.map((cta) =>
+                  cta.external ? (
+                    <a
+                      key={cta.key}
+                      href={cta.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
+                      style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+                    >
+                      {cta.label} <ExternalLink size={16} />
+                    </a>
+                  ) : (
+                    <Link
+                      key={cta.key}
+                      href={cta.href}
+                      className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
+                      style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+                    >
+                      {cta.label} <ArrowRight size={16} />
+                    </Link>
+                  )
+                )}
+              </div>
             </div>
           </section>
 

@@ -6,7 +6,7 @@ const footerLinks = {
   Programs: [
     { href: "/weight-loss", label: "Weight Loss" },
     { href: "/optimize", label: "Optimize" },
-    { href: "/bloodwork", label: "Start with Bloodwork" },
+    { href: "/bloodwork", label: "Labs" },
     { href: "/treatments", label: "All Treatments" },
     { href: "/membership", label: "Membership" },
   ],
@@ -51,7 +51,7 @@ export default function Footer() {
               full capacity.
             </p>
             <Link
-              href="/bloodwork"
+              href="/treatments"
               className="inline-block text-sm font-semibold px-5 py-2.5 rounded transition-all hover:brightness-110"
               style={{
                 background: "var(--red)",
@@ -59,7 +59,7 @@ export default function Footer() {
                 fontFamily: "var(--font-display)",
               }}
             >
-              Start Your Bloodwork
+              Find Your Protocol
             </Link>
           </div>
 

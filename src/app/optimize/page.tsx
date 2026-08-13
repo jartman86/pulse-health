@@ -4,7 +4,7 @@ import PulseLine from "@/components/ui/PulseLine";
 import TrustBadges from "@/components/ui/TrustBadges";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Callout from "@/components/ui/Callout";
-import { ArrowRight, Activity, Zap, Heart, Clock, Lock } from "lucide-react";
+import { ArrowRight, Activity, Zap, Heart, Clock, Dna } from "lucide-react";
 
 function ConditionalLink({
   href,
@@ -69,14 +69,14 @@ const protocols = [
     available: true,
   },
   {
-    icon: Lock,
+    icon: Dna,
     name: "Hormone Optimization",
-    tag: "Q3 2026 — Waitlist",
-    tagColor: "var(--muted)",
+    tag: "TRT · HRT",
+    tagColor: "var(--red)",
     description:
-      "TRT and HRT launching Q3 2026. Full panel → provider consult → ongoing monitoring. Join the waitlist to be first in.",
-    href: "/protocols/hormone-optimization",
-    available: false,
+      "Full testosterone replacement — injectable or topical cream, dosed to your labs and managed by a licensed provider.",
+    href: "/treatments/hormone-optimization",
+    available: true,
   },
 ];
 
@@ -130,7 +130,7 @@ export default function OptimizePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/bloodwork?door=optimize"
+                href="/treatments"
                 className="inline-flex items-center justify-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110"
                 style={{
                   background: "var(--red)",
@@ -138,14 +138,14 @@ export default function OptimizePage() {
                   fontFamily: "var(--font-display)",
                 }}
               >
-                Start Your Bloodwork <ArrowRight size={16} />
+                Find Your Protocol <ArrowRight size={16} />
               </Link>
               <Link
-                href="/treatments"
+                href="/bloodwork?door=optimize"
                 className="inline-flex items-center justify-center gap-2 text-base font-medium px-7 py-3.5 rounded border transition-all hover:border-[var(--red-bright)]"
                 style={{ borderColor: "#5A3030", color: "#E8B6AE" }}
               >
-                See All Treatments
+                Order Your Labs
               </Link>
             </div>
           </div>
@@ -325,14 +325,14 @@ export default function OptimizePage() {
             className="text-4xl font-extrabold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            Mission readiness starts with a baseline.
+            Every protocol starts with your provider, not a guess.
           </h2>
           <p className="text-base mb-8" style={{ color: "var(--bone-dim)" }}>
-            Order the Ultimate 360 Panel or choose your focused panel.
-            Results in your dashboard in 7–10 days with provider review included.
+            Choose your focus, start your consult, and your provider orders
+            the labs your protocol requires — billed at cost, no markup.
           </p>
           <Link
-            href="/bloodwork?door=optimize"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110"
             style={{
               background: "var(--red)",
@@ -340,7 +340,7 @@ export default function OptimizePage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
         </div>
       </section>

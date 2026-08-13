@@ -9,13 +9,14 @@ import DecisionWidget from "@/components/ui/DecisionWidget";
 import ProviderSection from "@/components/ui/ProviderSection";
 import TestimonialBand from "@/components/ui/TestimonialBand";
 import BiomarkerTicker from "@/components/ui/BiomarkerTicker";
+import HeroMotionLoop from "@/components/ui/HeroMotionLoop";
 import { tiers } from "@/lib/tiers";
 import { categories } from "@/lib/categories";
 import { CONSULT_FEE } from "@/lib/compounds";
-import { ArrowRight, ChevronRight, Scale, Activity, HeartPulse, Brain, Flame, Sparkles, FlaskConical, Stethoscope, ClipboardList, Users } from "lucide-react";
+import { ArrowRight, ChevronRight, Scale, Activity, HeartPulse, Brain, Flame, Target, Stethoscope, ClipboardList, Users } from "lucide-react";
 
 const outcomes = [
-  { stat: "Labs First", label: "Every protocol starts with your bloodwork", sub: "Not a quiz. Not a guess." },
+  { stat: "Labs At Cost", label: "$0 markup on the bloodwork your protocol requires", sub: "We make nothing on your labs." },
   { stat: "6–8 wks", label: "First protocol check-in", sub: "Labs + provider review" },
   { stat: "Provider-Led", label: "Every dose calibrated by a licensed provider", sub: "Personalized to your labs and history" },
 ];
@@ -26,7 +27,6 @@ const categoryIcons: Record<string, typeof Scale> = {
   "recovery-performance": HeartPulse,
   "cognition-energy": Brain,
   "sexual-health": Flame,
-  "hair-restoration": Sparkles,
 };
 
 const decisionOptions = [
@@ -57,8 +57,8 @@ const decisionOptions = [
 ];
 
 const processSteps = [
-  { icon: FlaskConical, label: "Test", body: "SiPhox at-home kit or a Quest venous draw — your call." },
-  { icon: Stethoscope, label: "Consult", body: "A licensed physician reviews your results with you." },
+  { icon: Target, label: "Choose", body: "Pick the outcome you're after — weight loss or optimization." },
+  { icon: Stethoscope, label: "Consult", body: "A licensed physician reviews your goals and orders labs if needed." },
   { icon: ClipboardList, label: "Protocol", body: "A personalized plan, prescribed and shipped." },
   { icon: Users, label: "Coach", body: "Ongoing optimization — not just a refill." },
 ];
@@ -68,8 +68,8 @@ const faqGroups = [
     group: "Getting Started",
     items: [
       {
-        q: "What does the $65 entry offer include?",
-        a: "A biomarker lab panel plus a licensed provider consult to review your results and recommend next steps — no separate quiz or guesswork.",
+        q: "What does it cost to get started?",
+        a: "A $25 licensed provider consult. Your provider orders any required labs at cost — no separate quiz or guesswork — and your protocol is billed separately if prescribed.",
       },
       {
         q: "Do I need to know what I want before I start?",
@@ -155,7 +155,7 @@ export default function HomePage() {
           preload
           sizes="100vw"
           quality={85}
-          style={{ objectFit: "cover", objectPosition: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "68% top" }}
         />
 
         {/* Scrim for text contrast over the photo */}
@@ -179,6 +179,9 @@ export default function HomePage() {
             opacity: 0.15,
           }}
         />
+
+        {/* Decorative motion loop — canvas particle animation styled after A4; falls back to the static A4 poster for prefers-reduced-motion */}
+        <HeroMotionLoop />
 
         <div className="relative max-w-7xl mx-auto w-full">
           <div className="max-w-3xl">
@@ -206,11 +209,11 @@ export default function HomePage() {
             {/* Primary CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <Link
-                href="/bloodwork"
+                href="/treatments"
                 className="inline-flex items-center justify-center gap-2 text-base font-semibold px-7 py-3.5 rounded transition-all hover:brightness-110 active:scale-[0.98]"
                 style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
               >
-                Start Your Bloodwork <ArrowRight size={16} />
+                Find Your Protocol <ArrowRight size={16} />
               </Link>
               <Link
                 href="/how-it-works"
@@ -301,11 +304,11 @@ export default function HomePage() {
             <p className="mt-6 text-sm" style={{ color: "var(--muted)" }}>
               Not sure where to start?{" "}
               <Link
-                href="/bloodwork"
+                href="/treatments"
                 className="underline underline-offset-2 transition-colors hover:text-[var(--red)]"
                 style={{ color: "var(--bone-dim)" }}
               >
-                Start with your bloodwork
+                Find your protocol
               </Link>{" "}
               — the data will tell you.
             </p>
@@ -322,25 +325,50 @@ export default function HomePage() {
       <section className="section-pad px-4 sm:px-6 lg:px-8 surface-light">
         <div className="max-w-7xl mx-auto">
           <Eyebrow>How It Works</Eyebrow>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2
+            className="text-3xl lg:text-4xl font-bold mb-4"
+            style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
+          >
+            From first click to ongoing care
+          </h2>
+          <p className="text-base mb-16 max-w-2xl" style={{ color: "#5A5A5A" }}>
+            No quiz, no guesswork — a clear, provider-led path from choosing
+            your treatment to a protocol that keeps adjusting with you.
+          </p>
+
+          <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-y-14 gap-x-8">
+            {/* Connector line threading through the icon badges — lg+ only */}
+            <div
+              className="hidden lg:block absolute h-px"
+              style={{ top: "36px", left: "36px", right: "36px", background: "#C9BFAE", zIndex: 0 }}
+              aria-hidden="true"
+            />
+
             {processSteps.map((step, i) => (
-              <div key={step.label} className="flex flex-col gap-2">
+              <div key={step.label} className="relative z-10 flex flex-col items-start gap-5">
                 <div
-                  className="text-xs uppercase tracking-widest mb-1"
-                  style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
+                  className="w-[72px] h-[72px] rounded-full flex items-center justify-center shrink-0 border-2"
+                  style={{ background: "#FFFFFF", borderColor: "var(--red)" }}
                 >
-                  {String(i + 1).padStart(2, "0")}
+                  <step.icon size={30} strokeWidth={1.75} style={{ color: "var(--red)" }} />
                 </div>
-                <step.icon size={20} style={{ color: "#5A5A5A" }} />
-                <h3
-                  className="text-base font-semibold"
-                  style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
-                >
-                  {step.label}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#5A5A5A" }}>
-                  {step.body}
-                </p>
+                <div>
+                  <div
+                    className="text-xs uppercase tracking-widest mb-2"
+                    style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
+                  >
+                    Step {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3
+                    className="text-xl font-bold mb-2"
+                    style={{ fontFamily: "var(--font-display)", color: "#1A1614" }}
+                  >
+                    {step.label}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#5A5A5A" }}>
+                    {step.body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -392,7 +420,7 @@ export default function HomePage() {
                 className="text-4xl lg:text-5xl font-bold mb-6"
                 style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
               >
-                Labs first. Protocol second.
+                Measured, then prescribed.
                 <br />
                 <span style={{ color: "var(--red)" }}>Monitoring as the destination.</span>
               </h2>
@@ -442,8 +470,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Biomarker ticker — the labs-first thesis, visualized. Real marker
-          names sourced from SIPHOX_PANELS, not an inflated count. */}
+      {/* Biomarker ticker — real marker names sourced from Altro panel
+          descriptions, not an inflated count. */}
       <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto">
           <Eyebrow>What We Actually Measure</Eyebrow>
@@ -580,19 +608,19 @@ export default function HomePage() {
             className="text-3xl lg:text-4xl font-bold mb-6"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            Start with $65 labs and a consult
+            Consult, labs, and a plan — from ${CONSULT_FEE}
           </h2>
           <div
             className="flex flex-col gap-2 p-6 rounded-lg border text-left mb-6"
             style={{ background: "var(--surface)", borderColor: "var(--line)" }}
           >
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-              <span>Biomarker lab panel</span>
-              <span>Included</span>
+              <span>Licensed provider consult</span>
+              <span>${CONSULT_FEE}</span>
             </div>
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-              <span>Licensed provider consult</span>
-              <span>Included</span>
+              <span>Required lab panel, ordered by your provider</span>
+              <span>At cost — $0 Pulse fee</span>
             </div>
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
               <span>Personalized protocol, if prescribed</span>
@@ -602,20 +630,17 @@ export default function HomePage() {
               className="flex justify-between text-sm font-semibold pt-2 mt-2 border-t"
               style={{ color: "var(--bone)", borderColor: "var(--line)" }}
             >
-              <span>Entry offer</span>
-              <span>$65</span>
+              <span>Starting subtotal</span>
+              <span>${CONSULT_FEE}</span>
             </div>
           </div>
           <Link
-            href="/bloodwork"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
             style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
-          <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
-            Consult from ${CONSULT_FEE} standalone — treatment billed separately if prescribed.
-          </p>
         </div>
       </section>
 
@@ -735,7 +760,7 @@ export default function HomePage() {
             No quiz gating, no guesswork.
           </p>
           <Link
-            href="/bloodwork"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
             style={{
               background: "var(--red)",
@@ -743,7 +768,7 @@ export default function HomePage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
           <p className="mt-4 text-xs" style={{ color: "var(--muted)" }}>
             At-home kits ship in 1–2 business days. Results in 5–10 days.

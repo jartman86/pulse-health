@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "operator health",
     "veteran health",
   ],
-  metadataBase: new URL("https://pulsehealth.com"),
+  metadataBase: new URL("https://pulse.health.clinic"),
   openGraph: {
     type: "website",
     siteName: "Pulse Health",

@@ -3,27 +3,19 @@ import Link from "next/link";
 import PulseLine from "@/components/ui/PulseLine";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Callout from "@/components/ui/Callout";
-import { ArrowRight, Package, MapPin, Check, Clock } from "lucide-react";
-import { SIPHOX_PANELS } from "@/lib/integrations/siphox";
+import { ArrowRight, Check } from "lucide-react";
+import { ALTRO_PORTAL_URL } from "@/lib/compounds";
+import { getRequiredPanels, getOptionalPanels } from "@/lib/integrations/altro";
 
 export const metadata: Metadata = {
-  title: "Start with Bloodwork — At-Home Lab Panels",
+  title: "Labs & Bloodwork — Required Panels at Cost",
   description:
-    "Order your at-home or venous lab panel. Results in 5–10 days with provider interpretation and your recommended next step. No consult required to order.",
-};
-
-const panels = Object.values(SIPHOX_PANELS);
-
-const panelGoals: Record<string, string[]> = {
-  glp: ["I want to lose weight", "Starting a GLP-1 program", "Metabolic baseline"],
-  hormone: ["Low energy or libido", "Recovery issues", "Hormone questions"],
-  "heart-metabolic": ["Cardiovascular health", "Lipids & metabolic risk", "Annual baseline"],
-  "ultimate-360": ["Complete performance baseline", "Optimize protocol", "Comprehensive picture"],
+    "Required lab panels billed at cost with a $0 Pulse service fee, plus a curated optional menu. Provider interpretation included.",
 };
 
 const whyBloodworkFirst = [
-  "Protocols built on data perform — guesses don't.",
-  "Your provider reviews results before recommending anything.",
+  "Required panels are billed at cost — Pulse adds a $0 service fee.",
+  "Your provider orders the right panel during your consult.",
   "Re-testing tracks your protocol response objectively.",
   "No quiz-gated pricing. No fake urgency. Just labs.",
 ];
@@ -36,225 +28,84 @@ export default function BloodworkPage() {
         className="relative pt-44 pb-16 px-4 sm:px-6 lg:px-8"
         style={{ background: "var(--ink)" }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Eyebrow>Lab Onramp</Eyebrow>
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h1
-                className="text-5xl sm:text-6xl font-extrabold leading-none tracking-tight mb-6"
-                style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-              >
-                The first move is
-                <br />
-                <span style={{ color: "var(--red)" }}>your bloodwork.</span>
-              </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: "var(--bone-dim)" }}>
-                Order your panel. Results land in your Pulse dashboard in
-                5–10 days with plain-language interpretation and your
-                provider&apos;s recommended next step. No consult required to start.
-              </p>
-              <ul className="flex flex-col gap-3">
-                {whyBloodworkFirst.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check
-                      size={15}
-                      className="mt-0.5 shrink-0"
-                      style={{ color: "var(--state-optimal)" }}
-                    />
-                    <span className="text-sm" style={{ color: "var(--bone-dim)" }}>
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Collection method */}
-            <div className="grid gap-4">
-              <div
-                className="p-5 rounded-lg border"
-                style={{ background: "var(--surface)", borderColor: "var(--red)", borderWidth: 1.5 }}
-              >
-                <div className="flex items-start gap-4">
-                  <Package size={20} style={{ color: "var(--red)", flexShrink: 0, marginTop: 2 }} />
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className="font-bold text-sm"
-                        style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-                      >
-                        At-Home Testing
-                      </span>
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "rgba(242,169,59,0.15)",
-                          color: "var(--red)",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
-                        Recommended
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                      Collect your sample at home — no appointment, no clinic
-                      visit required. Pulse kit ships to your door. Results in
-                      5–7 days.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="p-5 rounded-lg border"
-                style={{ background: "var(--surface)", borderColor: "var(--line)" }}
-              >
-                <div className="flex items-start gap-4">
-                  <MapPin size={20} style={{ color: "var(--bone-dim)", flexShrink: 0, marginTop: 2 }} />
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className="font-bold text-sm"
-                        style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-                      >
-                        Local Lab Testing
-                      </span>
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "var(--surface-2)",
-                          color: "var(--muted)",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
-                        Clinical / TRT Q3
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                      Visit a local draw site near you — no at-home kit
-                      required. Required for comprehensive hormone panels
-                      ahead of TRT/HRT (Q3 2026). 2,200+ locations nationwide.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1
+            className="text-5xl sm:text-6xl font-extrabold leading-none tracking-tight mb-6"
+            style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+          >
+            Know your
+            <br />
+            <span style={{ color: "var(--red)" }}>numbers.</span>
+          </h1>
+          <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: "var(--bone-dim)" }}>
+            Order your panel. Results land in your Pulse dashboard with
+            plain-language interpretation and your provider&apos;s recommended
+            next step. No consult required to start.
+          </p>
+          <ul className="flex flex-col gap-3">
+            {whyBloodworkFirst.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <Check
+                  size={15}
+                  className="mt-0.5 shrink-0"
+                  style={{ color: "var(--state-optimal)" }}
+                />
+                <span className="text-sm" style={{ color: "var(--bone-dim)" }}>
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <PulseLine className="opacity-50" />
 
-      {/* Panel selector */}
-      <section
-        className="section-pad px-4 sm:px-6 lg:px-8"
-        style={{ background: "var(--ink-2)" }}
-      >
+      {/* Altro-fulfilled lab panels — required (at cost) + curated optional */}
+      <section id="required" className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
         <div className="max-w-7xl mx-auto">
-          <Eyebrow>Choose Your Panel</Eyebrow>
+          <Eyebrow>Required Panels</Eyebrow>
           <h2
             className="text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
           >
-            Pick what matches your goal
+            Required labs, billed at cost.
           </h2>
           <p className="text-base mb-10 max-w-xl" style={{ color: "var(--muted)" }}>
-            Not sure which to choose? The GLP-1 Readiness Panel is the starting
-            point for weight loss. The Ultimate 360 is the baseline for anyone
-            running an Optimize protocol.
+            Every protocol requires baseline labs before a provider will
+            prescribe. We pass these through at wholesale — Pulse adds a $0
+            service fee. Your provider orders the right panel during your
+            consult; you can also order ahead.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {panels.map((panel) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {getRequiredPanels().map((service) => (
               <div
-                key={panel.id}
-                className="flex flex-col gap-4 p-6 rounded-lg border transition-all hover:border-[var(--red)]"
-                style={{
-                  background: "var(--surface)",
-                  borderColor: "var(--line)",
-                  ...(panel.id === "ultimate-360"
-                    ? { borderColor: "var(--red)", borderWidth: 1.5 }
-                    : {}),
-                }}
+                key={service.id}
+                className="flex flex-col gap-4 p-6 rounded-lg border"
+                style={{ background: "var(--surface)", borderColor: "var(--line)" }}
               >
-                {panel.id === "ultimate-360" && (
-                  <div
-                    className="text-xs px-2 py-0.5 rounded-full self-start"
-                    style={{
-                      background: "rgba(242,169,59,0.15)",
-                      color: "var(--red)",
-                      fontFamily: "var(--font-mono)",
-                    }}
-                  >
-                    Most Comprehensive
-                  </div>
-                )}
                 <h3
                   className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
                 >
-                  {panel.name}
+                  {service.name}
                 </h3>
                 <p className="text-sm leading-relaxed flex-1" style={{ color: "var(--muted)" }}>
-                  {panel.description}
+                  {service.description}
                 </p>
-
-                {/* Markers */}
-                <div className="flex flex-wrap gap-1">
-                  {panel.markers.slice(0, 4).map((m) => (
-                    <span
-                      key={m}
-                      className="text-xs px-1.5 py-0.5 rounded"
-                      style={{
-                        background: "var(--surface-2)",
-                        color: "var(--muted)",
-                        fontFamily: "var(--font-mono)",
-                      }}
-                    >
-                      {m}
-                    </span>
-                  ))}
-                  {panel.markers.length > 4 && (
-                    <span
-                      className="text-xs px-1.5 py-0.5 rounded"
-                      style={{
-                        background: "var(--surface-2)",
-                        color: "var(--muted)",
-                        fontFamily: "var(--font-mono)",
-                      }}
-                    >
-                      +{panel.markers.length - 4} more
-                    </span>
-                  )}
-                </div>
-
-                {/* Goals */}
-                <div className="flex flex-col gap-1.5">
-                  {(panelGoals[panel.id] ?? []).map((g) => (
-                    <div key={g} className="flex items-center gap-2">
-                      <Check size={11} style={{ color: "var(--state-optimal)", flexShrink: 0 }} />
-                      <span className="text-xs" style={{ color: "var(--muted)" }}>
-                        {g}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
                 <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: "var(--line)" }}>
-                  <div>
-                    <span
-                      className="text-2xl font-extrabold tabular-nums"
-                      style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
-                    >
-                      ${panel.price}
-                    </span>
-                    <div className="flex items-center gap-1 text-xs mt-0.5" style={{ fontFamily: "var(--font-mono)", color: "var(--muted)" }}>
-                      <Clock size={10} />
-                      {panel.turnaround}
-                    </div>
-                  </div>
-                  <Link
-                    href={`/bloodwork/order?panel=${panel.id}`}
+                  <span
+                    className="text-2xl font-extrabold tabular-nums"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  >
+                    ${service.price}
+                  </span>
+                  <a
+                    href={service.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm font-semibold px-4 py-2 rounded transition-all hover:brightness-110"
                     style={{
                       background: "var(--red)",
@@ -262,11 +113,67 @@ export default function BloodworkPage() {
                       fontFamily: "var(--font-display)",
                     }}
                   >
-                    Order
-                  </Link>
+                    Order Panel
+                  </a>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Curated optional menu */}
+          <div className="mt-16">
+            <Eyebrow>Optional Panels</Eyebrow>
+            <h3
+              className="text-2xl lg:text-3xl font-bold mb-4"
+              style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+            >
+              Go deeper when you want the full picture.
+            </h3>
+            <p className="text-base mb-8 max-w-xl" style={{ color: "var(--muted)" }}>
+              Optional panels carry a flat $50 service fee for provider
+              interpretation and dashboard integration. Order any of these on
+              your own, or ask your provider what&apos;s worth running.
+            </p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {getOptionalPanels().map((service) => (
+                <div
+                  key={service.id}
+                  className="flex flex-col gap-3 p-5 rounded-lg border"
+                  style={{ background: "var(--surface)", borderColor: "var(--line)" }}
+                >
+                  <h4
+                    className="text-base font-bold"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                  >
+                    {service.name}
+                  </h4>
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: "var(--muted)" }}>
+                    {service.description}
+                  </p>
+                  <div
+                    className="flex items-center justify-between pt-2 border-t"
+                    style={{ borderColor: "var(--line)" }}
+                  >
+                    <span
+                      className="text-xl font-extrabold tabular-nums"
+                      style={{ fontFamily: "var(--font-display)", color: "var(--bone)" }}
+                    >
+                      ${service.price}
+                    </span>
+                    <a
+                      href={service.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium px-4 py-2 rounded border transition-all hover:border-[var(--red-bright)]"
+                      style={{ borderColor: "var(--line)", color: "var(--bone-dim)" }}
+                    >
+                      Order Panel
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <Callout variant="info" className="mt-8 max-w-3xl">
@@ -276,6 +183,8 @@ export default function BloodworkPage() {
           </Callout>
         </div>
       </section>
+
+      <PulseLine className="opacity-50" />
 
       {/* What happens next */}
       <section
@@ -294,13 +203,13 @@ export default function BloodworkPage() {
             {[
               {
                 n: "01",
-                title: "Kit arrives, you collect, kit ships back",
-                body: "Your at-home kit ships within 1–2 business days. Collect your sample at home, return it in the pre-paid mailer. Takes about 10 minutes.",
+                title: "Order your panel",
+                body: "Choose a required or optional panel above and order directly through Altro.",
               },
               {
                 n: "02",
                 title: "Results in your Pulse dashboard",
-                body: "5–7 days later (or 7–10 for Ultimate 360) results appear in your dashboard with plain-language interpretation. Every value flagged against your personal reference ranges, not just lab normals.",
+                body: "Results appear in your dashboard with plain-language interpretation. Every value flagged against your personal reference ranges, not just lab normals.",
               },
               {
                 n: "03",
@@ -349,11 +258,13 @@ export default function BloodworkPage() {
             Start with the data.
           </h2>
           <p className="text-base mb-8" style={{ color: "var(--bone-dim)" }}>
-            Choose a panel above — or start with the GLP-1 Readiness Panel at $99.
-            No consult required to order.
+            Every protocol requires baseline labs — ordered by your provider,
+            billed at cost. No consult required to order ahead.
           </p>
           <Link
-            href="/bloodwork/order?panel=glp"
+            href={ALTRO_PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110"
             style={{
               background: "var(--red)",
@@ -361,7 +272,7 @@ export default function BloodworkPage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            Order GLP-1 Readiness Panel — $99 <ArrowRight size={16} />
+            Order Your Labs <ArrowRight size={16} />
           </Link>
         </div>
       </section>

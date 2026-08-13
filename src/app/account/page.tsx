@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
-import { Lock, ArrowRight } from "lucide-react";
+import { ALTRO_PORTAL_URL } from "@/lib/compounds";
+import { Lock, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Your Pulse Account",
   description: "Sign in to your Pulse Health account to access your dashboard, results, and patient app.",
 };
-
-const PORTAL_URL = process.env.NEXT_PUBLIC_PATIENT_PORTAL_URL || "https://my.pulsehealth.com";
 
 export default function AccountPage() {
   return (
@@ -32,94 +31,42 @@ export default function AccountPage() {
             Welcome back
           </h1>
           <p className="text-sm mt-2" style={{ color: "var(--muted)" }}>
-            Sign in to access your Pulse dashboard, lab results, and patient app.
+            Sign in to access your dashboard, lab results, and patient app.
           </p>
         </div>
 
         <div
-          className="p-8 rounded-xl border"
+          className="p-8 rounded-xl border flex flex-col items-center text-center"
           style={{ background: "var(--surface)", borderColor: "var(--line)" }}
         >
-          <form className="flex flex-col gap-4" action={`${PORTAL_URL}/auth/login`} method="POST">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-xs font-medium mb-1.5 uppercase tracking-wide"
-                style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                className="w-full px-4 py-3 rounded border text-sm"
-                style={{
-                  background: "var(--ink-2)",
-                  borderColor: "var(--line)",
-                  color: "var(--bone)",
-                }}
-                placeholder="you@example.com"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-xs font-medium mb-1.5 uppercase tracking-wide"
-                style={{ fontFamily: "var(--font-mono)", color: "var(--red)" }}
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                required
-                autoComplete="current-password"
-                className="w-full px-4 py-3 rounded border text-sm"
-                style={{
-                  background: "var(--ink-2)",
-                  borderColor: "var(--line)",
-                  color: "var(--bone)",
-                }}
-                placeholder="••••••••"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 text-sm font-semibold rounded mt-2 hover:brightness-110 transition-all"
-              style={{
-                background: "var(--red)",
-                color: "var(--ink)",
-                fontFamily: "var(--font-display)",
-              }}
-            >
-              Sign In
-            </button>
-          </form>
-
-          <div className="flex items-center justify-between mt-4 text-xs" style={{ color: "var(--muted)" }}>
-            <Link
-              href={`${PORTAL_URL}/auth/forgot-password`}
-              className="underline underline-offset-2 hover:text-[var(--red)]"
-            >
-              Forgot password?
-            </Link>
-          </div>
+          <p className="text-sm mb-6" style={{ color: "var(--bone-dim)" }}>
+            Your account, results, and messages live in your Altro patient
+            portal. Sign in there to pick up where you left off.
+          </p>
+          <a
+            href={ALTRO_PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded hover:brightness-110 transition-all"
+            style={{
+              background: "var(--red)",
+              color: "var(--ink)",
+              fontFamily: "var(--font-display)",
+            }}
+          >
+            Sign In via Altro <ExternalLink size={14} />
+          </a>
         </div>
 
         <div className="text-center mt-6">
           <p className="text-sm" style={{ color: "var(--muted)" }}>
             New to Pulse?{" "}
             <Link
-              href="/bloodwork"
+              href="/treatments"
               className="font-medium underline underline-offset-2 hover:text-[var(--red)]"
               style={{ color: "var(--bone-dim)" }}
             >
-              Start with your bloodwork
+              Find your protocol
             </Link>
           </p>
         </div>
@@ -128,8 +75,7 @@ export default function AccountPage() {
           className="mt-8 p-4 rounded-lg text-xs text-center border"
           style={{ borderColor: "var(--line)", color: "var(--muted)", fontFamily: "var(--font-mono)" }}
         >
-          Your account securely connects to the Pulse patient app at{" "}
-          <span style={{ color: "var(--bone-dim)" }}>my.pulsehealth.com</span>. HIPAA-compliant. Encrypted.
+          Your account connects to Pulse&apos;s clinical partner, Altro. HIPAA-compliant. Encrypted.
         </div>
       </div>
     </section>

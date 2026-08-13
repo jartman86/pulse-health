@@ -1,4 +1,4 @@
-// Marker names pulled from src/lib/integrations/siphox.ts (SIPHOX_PANELS) —
+// Marker names pulled from Altro panel descriptions (src/lib/integrations/altro.ts) —
 // real panel line items, not an invented count. Panel-level labels ("CMP",
 // "CBC", "Lipids") are excluded since they're bundles, not single markers.
 const groups = [

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/weight-loss", label: "Weight Loss" },
   { href: "/optimize", label: "Optimize" },
-  { href: "/bloodwork", label: "Bloodwork" },
+  { href: "/bloodwork", label: "Labs" },
   { href: "/treatments", label: "Treatments" },
   { href: "/membership", label: "Membership" },
   { href: "/how-it-works", label: "How It Works" },
@@ -105,7 +105,7 @@ export default function Nav() {
             Sign In
           </Link>
           <Link
-            href="/bloodwork"
+            href="/treatments"
             className="text-sm font-semibold px-4 py-2 rounded transition-all hover:brightness-110 active:scale-[0.98]"
             style={{
               background: "var(--red)",
@@ -113,7 +113,7 @@ export default function Nav() {
               fontFamily: "var(--font-display)",
             }}
           >
-            Start Your Bloodwork
+            Find Your Protocol
           </Link>
         </div>
 
@@ -183,7 +183,7 @@ export default function Nav() {
               Sign In
             </Link>
             <Link
-              href="/bloodwork"
+              href="/treatments"
               className="text-sm font-semibold px-4 py-3 rounded text-center transition-all hover:brightness-110"
               style={{
                 background: "var(--red)",
@@ -191,7 +191,7 @@ export default function Nav() {
                 fontFamily: "var(--font-display)",
               }}
             >
-              Start Your Bloodwork
+              Find Your Protocol
             </Link>
           </div>
         </div>

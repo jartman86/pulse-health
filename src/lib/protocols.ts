@@ -1,11 +1,13 @@
-// ARCHIVED (Hone-model redesign, Phase 4): the named protocol-bundle
-// public routes (operator-reset, recovery-repair, drive,
-// longevity-baseline, hair) are retired in favor of src/lib/compounds.ts
-// + src/lib/categories.ts and the /treatments catalog — see
-// next.config.ts for the 301s. This module is kept, not deleted: its
-// data still backs the still-live /protocols/hormone-optimization
-// waitlist page, and PROTOCOL_FAQ/CONSULT_FEE are reused by the new
-// compound pages.
+// ARCHIVED (Hone-model redesign, Phase 4; hormone-optimization retired
+// Altro migration, Aug 2026): all six named protocol-bundle public
+// routes (operator-reset, recovery-repair, drive, longevity-baseline,
+// hair, hormone-optimization) are retired in favor of
+// src/lib/compounds.ts + src/lib/categories.ts and the /treatments
+// catalog — see next.config.ts for the 301s. This module is kept, not
+// deleted: PROTOCOL_FAQ/CONSULT_FEE are reused by the new compound
+// pages. The per-protocol data below (prices, availability) predates
+// the Altro repricing and should not be treated as current — see
+// src/lib/compounds.ts for live prices.
 //
 // Consult fee shown alongside every protocol's "Starting at" price, per the
 // three-layer offer pattern (marketing card -> what's included -> medications
@@ -28,7 +30,7 @@ export interface Protocol {
   includes: string[];
   labsRequired: string[];
   price: number;
-  // True when `price` is a confirmed floor (e.g. cheapest matching MyDose
+  // True when `price` is a confirmed floor (e.g. cheapest matching Altro
   // SKU, or the bundle's existing live price) rather than a fixed
   // all-inclusive number — display as "Starting at".
   priceStartingAt?: boolean;
@@ -59,7 +61,9 @@ export const protocols: Protocol[] = [
       "Coaching & ongoing support available after your consult",
     ],
     labsRequired: ["GLP-1 Readiness Panel"],
-    price: 199,
+    // Repriced to match live Altro price for the anchor (compounds.ts
+    // "semaglutide-glycine"), Aug 2026.
+    price: 170,
     priceStartingAt: true,
     anchorMedication: "Semaglutide + Glycine",
     available: true,
@@ -89,16 +93,9 @@ export const protocols: Protocol[] = [
         route: "Sublingual",
         note: "Alternate route for patients who prefer not to inject.",
       },
-      {
-        name: "Ondansetron",
-        route: "Oral Tablet",
-        note: "Provider discretion only, for side-effect management — not automatic co-prescribing.",
-      },
-      {
-        name: "Metformin",
-        route: "Oral Tablet",
-        note: "Adjunct for metabolic-syndrome markers, as indicated.",
-      },
+      // Ondansetron and Metformin rows scrubbed (Aug 2026 Altro migration):
+      // neither has an Altro SKU in compounds.ts, so status/pricing can't
+      // be confirmed.
     ],
     safetyNote:
       "GLP-1 medications are not appropriate for individuals with personal or family history of MTC or MEN2. Provider evaluation required.",
@@ -119,7 +116,9 @@ export const protocols: Protocol[] = [
       "Coaching & ongoing support available after your consult",
     ],
     labsRequired: ["Hormone Panel"],
-    price: 449,
+    // Repriced to match live Altro price for the anchor (compounds.ts
+    // "sermorelin"), Aug 2026.
+    price: 184,
     priceStartingAt: true,
     anchorMedication: "Sermorelin",
     available: true,
@@ -130,15 +129,12 @@ export const protocols: Protocol[] = [
         note: "Anchor product — GHRH analog, restores natural GH pulsatility for sleep and tissue repair.",
       },
       {
-        name: "B12",
-        route: "Injection",
-        note: "Complementary, energy support.",
-      },
-      {
         name: "NAD+",
         route: "Injection",
         note: "Complementary only if goals lean energy-adjacent — primary NAD+ story lives under Longevity Baseline.",
       },
+      // B12 row scrubbed (Aug 2026 Altro migration): no standalone B12
+      // Altro SKU in compounds.ts to confirm status/pricing against.
     ],
     safetyNote:
       "Peptide medications are compounded and not FDA-approved. Provider evaluation and labs required prior to prescribing.",
@@ -159,26 +155,22 @@ export const protocols: Protocol[] = [
       "Coaching & ongoing support available after your consult",
     ],
     labsRequired: ["Hormone Panel"],
-    price: 199,
-    priceStartingAt: true,
-    anchorMedication: "Tadalafil",
-    available: true,
+    // Scrubbed, not repriced (Aug 2026 Altro migration): Tadalafil and
+    // Sildenafil — the only first-purchase anchor candidates — are both
+    // "coming-soon" in compounds.ts (no Altro fulfillment backend), so
+    // there is no confirmed live price to anchor this protocol to.
+    price: 0,
+    anchorMedication: undefined,
+    available: false,
+    availableDate: "once Altro confirms fulfillment",
     medicationsTable: [
-      {
-        name: "Tadalafil",
-        route: "Oral Capsule",
-        note: "Anchor product — daily low-dose, continuous coverage.",
-      },
-      {
-        name: "Sildenafil",
-        route: "Oral Tablet",
-        note: "Alternate, on-demand dosing preference.",
-      },
       {
         name: "PT-141 (bremelanotide)",
         route: "Injection",
         note: "Provider-recommended only, after your consult. Off-label for men, with cardiovascular contraindications requiring screening — not offered at initial purchase.",
       },
+      // Tadalafil and Sildenafil rows scrubbed — both coming-soon, no
+      // confirmed Altro price.
     ],
     safetyNote:
       "PT-141 is only FDA-approved for women's HSDD (as Vyleesi); male use is off-label and carries cardiovascular contraindications. Sildenafil and tadalafil are provider-supervised and not appropriate with certain cardiovascular conditions. Evaluation required.",
@@ -199,7 +191,11 @@ export const protocols: Protocol[] = [
       "Coaching & ongoing support available after your consult",
     ],
     labsRequired: ["Ultimate 360 Panel"],
-    price: 599,
+    // Repriced to match live Altro price for the anchor (compounds.ts
+    // "nad-plus"), Aug 2026; now shown "Starting at" since it reflects
+    // the single anchor SKU, not a computed bundle total.
+    price: 217,
+    priceStartingAt: true,
     anchorMedication: "NAD+ Injection",
     available: true,
     medicationsTable: [
@@ -208,19 +204,11 @@ export const protocols: Protocol[] = [
         route: "Injection",
         note: "Anchor product — sirtuin activation, cellular DNA repair.",
       },
-      {
-        name: "Methylene Blue",
-        route: "Oral Capsule",
-        note: "Complementary — evidence is preliminary; disclosure language only, not a headline claim.",
-      },
-      {
-        name: "B12",
-        route: "Injection",
-        note: "Complementary, energy support.",
-      },
+      // Methylene Blue row scrubbed (Aug 2026 Altro migration): still
+      // "coming-soon" in compounds.ts, no Altro fulfillment backend.
+      // B12 row scrubbed: no standalone B12 Altro SKU to confirm against.
     ],
-    safetyNote:
-      "NAD+ and methylene blue are provider-supervised. Provider evaluation required prior to prescribing.",
+    safetyNote: "NAD+ is provider-supervised. Provider evaluation required prior to prescribing.",
   },
   {
     slug: "hair",
@@ -237,17 +225,15 @@ export const protocols: Protocol[] = [
       "Coaching & ongoing support available after your consult",
     ],
     labsRequired: [],
-    price: 129,
-    priceStartingAt: true,
-    anchorMedication: "Minoxidil",
-    available: true,
-    medicationsTable: [
-      {
-        name: "Minoxidil",
-        route: "Oral Capsule",
-        note: "Anchor product — only medication in this protocol, no bundling ambiguity.",
-      },
-    ],
+    // Scrubbed, not repriced (Aug 2026 Altro migration): Minoxidil — the
+    // only medication in this protocol — is "coming-soon" in
+    // compounds.ts (no Altro fulfillment backend), so there is no
+    // confirmed live price.
+    price: 0,
+    anchorMedication: undefined,
+    available: false,
+    availableDate: "once Altro confirms fulfillment",
+    medicationsTable: [],
     safetyNote:
       "Compounded formulations are not FDA-approved. Standard minoxidil (Rogaine) is FDA-approved. Provider evaluation determines best approach.",
   },

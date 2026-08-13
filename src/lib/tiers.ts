@@ -1,6 +1,6 @@
 // Membership tiers — coaching/monitoring add-ons layered on top of a
 // protocol, billed separately via GoHighLevel (never the same checkout as
-// the clinical MyDose charge). Foundation is the base protocol experience
+// the clinical Altro charge). Foundation is the base protocol experience
 // itself, not a separate line item.
 export interface Tier {
   id: "foundation" | "operator" | "full-spectrum";

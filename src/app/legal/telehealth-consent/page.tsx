@@ -59,7 +59,7 @@ export default function TelehealthConsentPage() {
             </ul>
           </section>
           <p className="text-xs" style={{ color: "var(--muted)" }}>
-            For questions: support@pulsehealth.com
+            For questions: support@pulse.health.clinic
           </p>
         </div>
       </div>

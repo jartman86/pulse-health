@@ -7,7 +7,7 @@ import CompoundCard from "@/components/ui/CompoundCard";
 import ComplianceDisclosure from "@/components/ui/ComplianceDisclosure";
 import { categories, getCategory } from "@/lib/categories";
 import { getCompoundsByCategory, CONSULT_FEE } from "@/lib/compounds";
-import { ArrowRight, FlaskConical, Stethoscope, ClipboardList, Users } from "lucide-react";
+import { ArrowRight, Target, Stethoscope, ClipboardList, Users } from "lucide-react";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -21,15 +21,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;
   const category = getCategory(slug);
   if (!category) return {};
+  // Restricted categories carry the same noindex guardrail as their
+  // individual compound pages — see src/lib/compounds.ts header.
   return {
-    title: `${category.name} — Pulse Health`,
+    title: category.name,
     description: category.subhead,
+    ...(category.restricted
+      ? { robots: { index: false, follow: false } }
+      : {}),
   };
 }
 
 const steps = [
-  { icon: FlaskConical, label: "Test", body: "Labs at home or a local draw." },
-  { icon: Stethoscope, label: "Consult", body: "Licensed provider reviews your results." },
+  { icon: Target, label: "Choose", body: "Pick a treatment and start your consult." },
+  { icon: Stethoscope, label: "Consult", body: "Licensed provider reviews your goals and orders labs if needed." },
   { icon: ClipboardList, label: "Protocol", body: "Personalized prescription, shipped." },
   { icon: Users, label: "Coach", body: "Ongoing support, not just a refill." },
 ];
@@ -67,7 +72,7 @@ export default async function CategoryPage({ params }: Props) {
 
       <PulseLine className="opacity-40" />
 
-      <section className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
+      <section id="compounds" className="section-pad px-4 sm:px-6 lg:px-8" style={{ background: "var(--ink-2)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {compoundList.map((compound) => (
@@ -124,12 +129,12 @@ export default async function CategoryPage({ params }: Props) {
             style={{ background: "var(--surface)", borderColor: "var(--line)" }}
           >
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-              <span>Lab panel</span>
-              <span>Included</span>
+              <span>Licensed provider consult</span>
+              <span>${CONSULT_FEE}</span>
             </div>
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
-              <span>Licensed provider consult</span>
-              <span>Included</span>
+              <span>Required lab panel, ordered by your provider</span>
+              <span>At cost — $0 Pulse fee</span>
             </div>
             <div className="flex justify-between text-sm" style={{ color: "var(--bone-dim)" }}>
               <span>Personalized protocol, if prescribed</span>
@@ -144,11 +149,11 @@ export default async function CategoryPage({ params }: Props) {
             </div>
           </div>
           <Link
-            href={`/bloodwork?category=${category.slug}`}
+            href="#compounds"
             className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded transition-all hover:brightness-110 active:scale-[0.98]"
             style={{ background: "var(--red)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
           >
-            Start Your Bloodwork <ArrowRight size={16} />
+            Find Your Protocol <ArrowRight size={16} />
           </Link>
         </div>
       </section>
